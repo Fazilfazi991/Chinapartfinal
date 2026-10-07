@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-07T15:58:47.602Z",
+  "title": "Design System: China Parts Shop",
+  "extensions": {
+    "colorMeta": {
+      "cps-yellow": {
+        "role": "primary",
+        "displayName": "CPS Yellow",
+        "canonical": "#ffcc05",
+        "tonalRamp": [
+          "oklch(15.000% 0.176252 90.306)",
+          "oklch(26.429% 0.176252 90.306)",
+          "oklch(37.857% 0.176252 90.306)",
+          "oklch(49.286% 0.176252 90.306)",
+          "oklch(60.714% 0.176252 90.306)",
+          "oklch(72.143% 0.176252 90.306)",
+          "oklch(83.571% 0.176252 90.306)",
+          "oklch(95.000% 0.176252 90.306)"
+        ]
+      },
+      "cps-yellow-hover": {
+        "role": "primary",
+        "displayName": "CPS Yellow Hover",
+        "canonical": "#eabc00",
+        "tonalRamp": [
+          "oklch(15.000% 0.166141 90.896)",
+          "oklch(26.429% 0.166141 90.896)",
+          "oklch(37.857% 0.166141 90.896)",
+          "oklch(49.286% 0.166141 90.896)",
+          "oklch(60.714% 0.166141 90.896)",
+          "oklch(72.143% 0.166141 90.896)",
+          "oklch(83.571% 0.166141 90.896)",
+          "oklch(95.000% 0.166141 90.896)"
+        ]
+      },
+      "request-amber": {
+        "role": "primary",
+        "displayName": "Request Amber",
+        "canonical": "#f5b512",
+        "tonalRamp": [
+          "oklch(15.000% 0.164296 82.352)",
+          "oklch(26.429% 0.164296 82.352)",
+          "oklch(37.857% 0.164296 82.352)",
+          "oklch(49.286% 0.164296 82.352)",
+          "oklch(60.714% 0.164296 82.352)",
+          "oklch(72.143% 0.164296 82.352)",
+          "oklch(83.571% 0.164296 82.352)",
+          "oklch(95.000% 0.164296 82.352)"
+        ]
+      },
+      "request-amber-hover": {
+        "role": "primary",
+        "displayName": "Request Amber Hover",
+        "canonical": "#e5a710",
+        "tonalRamp": [
+          "oklch(15.000% 0.155739 81.233)",
+          "oklch(26.429% 0.155739 81.233)",
+          "oklch(37.857% 0.155739 81.233)",
+          "oklch(49.286% 0.155739 81.233)",
+          "oklch(60.714% 0.155739 81.233)",
+          "oklch(72.143% 0.155739 81.233)",
+          "oklch(83.571% 0.155739 81.233)",
+          "oklch(95.000% 0.155739 81.233)"
+        ]
+      },
+      "ink-charcoal": {
+        "role": "neutral",
+        "displayName": "Ink Charcoal",
+        "canonical": "#20221f",
+        "tonalRamp": [
+          "oklch(15.000% 0.006295 134.954)",
+          "oklch(26.429% 0.006295 134.954)",
+          "oklch(37.857% 0.006295 134.954)",
+          "oklch(49.286% 0.006295 134.954)",
+          "oklch(60.714% 0.006295 134.954)",
+          "oklch(72.143% 0.006295 134.954)",
+          "oklch(83.571% 0.006295 134.954)",
+          "oklch(95.000% 0.006295 134.954)"
+        ]
+      },
+      "ink-hover": {
+        "role": "neutral",
+        "displayName": "Ink Hover",
+        "canonical": "#383b33",
+        "tonalRamp": [
+          "oklch(15.000% 0.014171 123.907)",
+          "oklch(26.429% 0.014171 123.907)",
+          "oklch(37.857% 0.014171 123.907)",
+          "oklch(49.286% 0.014171 123.907)",
+          "oklch(60.714% 0.014171 123.907)",
+          "oklch(72.143% 0.014171 123.907)",
+          "oklch(83.571% 0.014171 123.907)",
+          "oklch(95.000% 0.014171 123.907)"
+        ]
+      },
+      "request-ink": {
+        "role": "neutral",
+        "displayName": "Request Ink",
+        "canonical": "#111315",
+        "tonalRamp": [
+          "oklch(15.000% 0.005178 248.107)",
+          "oklch(26.429% 0.005178 248.107)",
+          "oklch(37.857% 0.005178 248.107)",
+          "oklch(49.286% 0.005178 248.107)",
+          "oklch(60.714% 0.005178 248.107)",
+          "oklch(72.143% 0.005178 248.107)",
+          "oklch(83.571% 0.005178 248.107)",
+          "oklch(95.000% 0.005178 248.107)"
+        ]
+      },
+      "warm-paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#faf9f5",
+        "tonalRamp": [
+          "oklch(15.000% 0.005392 95.099)",
+          "oklch(26.429% 0.005392 95.099)",
+          "oklch(37.857% 0.005392 95.099)",
+          "oklch(49.286% 0.005392 95.099)",
+          "oklch(60.714% 0.005392 95.099)",
+          "oklch(72.143% 0.005392 95.099)",
+          "oklch(83.571% 0.005392 95.099)",
+          "oklch(95.000% 0.005392 95.099)"
+        ]
+      },
+      "request-paper": {
+        "role": "neutral",
+        "displayName": "Request Paper",
+        "canonical": "#f6f6f2",
+        "tonalRamp": [
+          "oklch(15.000% 0.005287 106.497)",
+          "oklch(26.429% 0.005287 106.497)",
+          "oklch(37.857% 0.005287 106.497)",
+          "oklch(49.286% 0.005287 106.497)",
+          "oklch(60.714% 0.005287 106.497)",
+          "oklch(72.143% 0.005287 106.497)",
+          "oklch(83.571% 0.005287 106.497)",
+          "oklch(95.000% 0.005287 106.497)"
+        ]
+      },
+      "capture-surface": {
+        "role": "neutral",
+        "displayName": "Capture Surface",
+        "canonical": "#efeee7",
+        "tonalRamp": [
+          "oklch(15.000% 0.009369 99.988)",
+          "oklch(26.429% 0.009369 99.988)",
+          "oklch(37.857% 0.009369 99.988)",
+          "oklch(49.286% 0.009369 99.988)",
+          "oklch(60.714% 0.009369 99.988)",
+          "oklch(72.143% 0.009369 99.988)",
+          "oklch(83.571% 0.009369 99.988)",
+          "oklch(95.000% 0.009369 99.988)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15.000% 0.000000 89.876)",
+          "oklch(26.429% 0.000000 89.876)",
+          "oklch(37.857% 0.000000 89.876)",
+          "oklch(49.286% 0.000000 89.876)",
+          "oklch(60.714% 0.000000 89.876)",
+          "oklch(72.143% 0.000000 89.876)",
+          "oklch(83.571% 0.000000 89.876)",
+          "oklch(95.000% 0.000000 89.876)"
+        ]
+      },
+      "muted-olive": {
+        "role": "neutral",
+        "displayName": "Muted Olive",
+        "canonical": "#595c55",
+        "tonalRamp": [
+          "oklch(15.000% 0.011677 125.880)",
+          "oklch(26.429% 0.011677 125.880)",
+          "oklch(37.857% 0.011677 125.880)",
+          "oklch(49.286% 0.011677 125.880)",
+          "oklch(60.714% 0.011677 125.880)",
+          "oklch(72.143% 0.011677 125.880)",
+          "oklch(83.571% 0.011677 125.880)",
+          "oklch(95.000% 0.011677 125.880)"
+        ]
+      },
+      "muted-slate": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "canonical": "#4a4e52",
+        "tonalRamp": [
+          "oklch(15.000% 0.008436 248.028)",
+          "oklch(26.429% 0.008436 248.028)",
+          "oklch(37.857% 0.008436 248.028)",
+          "oklch(49.286% 0.008436 248.028)",
+          "oklch(60.714% 0.008436 248.028)",
+          "oklch(72.143% 0.008436 248.028)",
+          "oklch(83.571% 0.008436 248.028)",
+          "oklch(95.000% 0.008436 248.028)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Muted",
+        "canonical": "#d3d6cd",
+        "tonalRamp": [
+          "oklch(15.000% 0.012612 121.726)",
+          "oklch(26.429% 0.012612 121.726)",
+          "oklch(37.857% 0.012612 121.726)",
+          "oklch(49.286% 0.012612 121.726)",
+          "oklch(60.714% 0.012612 121.726)",
+          "oklch(72.143% 0.012612 121.726)",
+          "oklch(83.571% 0.012612 121.726)",
+          "oklch(95.000% 0.012612 121.726)"
+        ]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Divider",
+        "canonical": "#d9dbd3",
+        "tonalRamp": [
+          "oklch(15.000% 0.010999 118.044)",
+          "oklch(26.429% 0.010999 118.044)",
+          "oklch(37.857% 0.010999 118.044)",
+          "oklch(49.286% 0.010999 118.044)",
+          "oklch(60.714% 0.010999 118.044)",
+          "oklch(72.143% 0.010999 118.044)",
+          "oklch(83.571% 0.010999 118.044)",
+          "oklch(95.000% 0.010999 118.044)"
+        ]
+      },
+      "request-divider": {
+        "role": "neutral",
+        "displayName": "Request Divider",
+        "canonical": "#d7d9d6",
+        "tonalRamp": [
+          "oklch(15.000% 0.004592 134.853)",
+          "oklch(26.429% 0.004592 134.853)",
+          "oklch(37.857% 0.004592 134.853)",
+          "oklch(49.286% 0.004592 134.853)",
+          "oklch(60.714% 0.004592 134.853)",
+          "oklch(72.143% 0.004592 134.853)",
+          "oklch(83.571% 0.004592 134.853)",
+          "oklch(95.000% 0.004592 134.853)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Border",
+        "canonical": "#9c9f93",
+        "tonalRamp": [
+          "oklch(15.000% 0.017481 118.270)",
+          "oklch(26.429% 0.017481 118.270)",
+          "oklch(37.857% 0.017481 118.270)",
+          "oklch(49.286% 0.017481 118.270)",
+          "oklch(60.714% 0.017481 118.270)",
+          "oklch(72.143% 0.017481 118.270)",
+          "oklch(83.571% 0.017481 118.270)",
+          "oklch(95.000% 0.017481 118.270)"
+        ]
+      },
+      "request-field-border": {
+        "role": "neutral",
+        "displayName": "Request Field Border",
+        "canonical": "#898e91",
+        "tonalRamp": [
+          "oklch(15.000% 0.007392 233.707)",
+          "oklch(26.429% 0.007392 233.707)",
+          "oklch(37.857% 0.007392 233.707)",
+          "oklch(49.286% 0.007392 233.707)",
+          "oklch(60.714% 0.007392 233.707)",
+          "oklch(72.143% 0.007392 233.707)",
+          "oklch(83.571% 0.007392 233.707)",
+          "oklch(95.000% 0.007392 233.707)"
+        ]
+      },
+      "outline-hover": {
+        "role": "neutral",
+        "displayName": "Outline Hover",
+        "canonical": "#eeede7",
+        "tonalRamp": [
+          "oklch(15.000% 0.008061 98.882)",
+          "oklch(26.429% 0.008061 98.882)",
+          "oklch(37.857% 0.008061 98.882)",
+          "oklch(49.286% 0.008061 98.882)",
+          "oklch(60.714% 0.008061 98.882)",
+          "oklch(72.143% 0.008061 98.882)",
+          "oklch(83.571% 0.008061 98.882)",
+          "oklch(95.000% 0.008061 98.882)"
+        ]
+      },
+      "focus-red": {
+        "role": "secondary",
+        "displayName": "Focus Red",
+        "canonical": "#aa3023",
+        "tonalRamp": [
+          "oklch(15.000% 0.160557 29.884)",
+          "oklch(26.429% 0.160557 29.884)",
+          "oklch(37.857% 0.160557 29.884)",
+          "oklch(49.286% 0.160557 29.884)",
+          "oklch(60.714% 0.160557 29.884)",
+          "oklch(72.143% 0.160557 29.884)",
+          "oklch(83.571% 0.160557 29.884)",
+          "oklch(95.000% 0.160557 29.884)"
+        ]
+      },
+      "request-red": {
+        "role": "secondary",
+        "displayName": "Request Red",
+        "canonical": "#b51621",
+        "tonalRamp": [
+          "oklch(15.000% 0.189528 25.387)",
+          "oklch(26.429% 0.189528 25.387)",
+          "oklch(37.857% 0.189528 25.387)",
+          "oklch(49.286% 0.189528 25.387)",
+          "oklch(60.714% 0.189528 25.387)",
+          "oklch(72.143% 0.189528 25.387)",
+          "oklch(83.571% 0.189528 25.387)",
+          "oklch(95.000% 0.189528 25.387)"
+        ]
+      },
+      "error-red": {
+        "role": "secondary",
+        "displayName": "Error Red",
+        "canonical": "#a10e1b",
+        "tonalRamp": [
+          "oklch(15.000% 0.175861 25.222)",
+          "oklch(26.429% 0.175861 25.222)",
+          "oklch(37.857% 0.175861 25.222)",
+          "oklch(49.286% 0.175861 25.222)",
+          "oklch(60.714% 0.175861 25.222)",
+          "oklch(72.143% 0.175861 25.222)",
+          "oklch(83.571% 0.175861 25.222)",
+          "oklch(95.000% 0.175861 25.222)"
+        ]
+      },
+      "warning-paper": {
+        "role": "neutral",
+        "displayName": "Warning Paper",
+        "canonical": "#fff3cf",
+        "tonalRamp": [
+          "oklch(15.000% 0.048501 91.752)",
+          "oklch(26.429% 0.048501 91.752)",
+          "oklch(37.857% 0.048501 91.752)",
+          "oklch(49.286% 0.048501 91.752)",
+          "oklch(60.714% 0.048501 91.752)",
+          "oklch(72.143% 0.048501 91.752)",
+          "oklch(83.571% 0.048501 91.752)",
+          "oklch(95.000% 0.048501 91.752)"
+        ]
+      },
+      "selection-yellow": {
+        "role": "neutral",
+        "displayName": "Selection Yellow",
+        "canonical": "#ffdc52",
+        "tonalRamp": [
+          "oklch(15.000% 0.156161 94.670)",
+          "oklch(26.429% 0.156161 94.670)",
+          "oklch(37.857% 0.156161 94.670)",
+          "oklch(49.286% 0.156161 94.670)",
+          "oklch(60.714% 0.156161 94.670)",
+          "oklch(72.143% 0.156161 94.670)",
+          "oklch(83.571% 0.156161 94.670)",
+          "oklch(95.000% 0.156161 94.670)"
+        ]
+      },
+      "sales-green": {
+        "role": "secondary",
+        "displayName": "Sales Green",
+        "canonical": "#225c3c",
+        "tonalRamp": [
+          "oklch(15.000% 0.081000 156.218)",
+          "oklch(26.429% 0.081000 156.218)",
+          "oklch(37.857% 0.081000 156.218)",
+          "oklch(49.286% 0.081000 156.218)",
+          "oklch(60.714% 0.081000 156.218)",
+          "oklch(72.143% 0.081000 156.218)",
+          "oklch(83.571% 0.081000 156.218)",
+          "oklch(95.000% 0.081000 156.218)"
+        ]
+      },
+      "sales-green-hover": {
+        "role": "secondary",
+        "displayName": "Sales Green Hover",
+        "canonical": "#18462c",
+        "tonalRamp": [
+          "oklch(15.000% 0.067973 155.629)",
+          "oklch(26.429% 0.067973 155.629)",
+          "oklch(37.857% 0.067973 155.629)",
+          "oklch(49.286% 0.067973 155.629)",
+          "oklch(60.714% 0.067973 155.629)",
+          "oklch(72.143% 0.067973 155.629)",
+          "oklch(83.571% 0.067973 155.629)",
+          "oklch(95.000% 0.067973 155.629)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Homepage sourcing promise."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Homepage section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Homepage subsection headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Homepage body copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Homepage labels above fields."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Homepage action labels."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "Desktop public navigation links."
+      },
+      "request-headline": {
+        "displayName": "Request Headline",
+        "purpose": "Enquiry, supplier and task-page heading."
+      },
+      "request-title": {
+        "displayName": "Request Title",
+        "purpose": "Request-step headings."
+      },
+      "request-body": {
+        "displayName": "Request Body",
+        "purpose": "Request and supplier page body and editable fields."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sales-utility",
+        "value": "0 5px 18px #20221f26",
+        "purpose": "Limited functional lift for the floating contact control."
+      }
+    ],
+    "motion": [
+      {
+        "name": "action-background",
+        "value": "background-color 160ms ease-out",
+        "purpose": "Homepage action hover feedback."
+      },
+      {
+        "name": "action-press",
+        "value": "transform 120ms ease-out",
+        "purpose": "Homepage press feedback."
+      },
+      {
+        "name": "pressed-scale",
+        "value": "scale(0.98)",
+        "purpose": "Homepage action pressed state; remains immediate under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none; scroll-behavior: auto",
+        "purpose": "Remove public action transitions and smooth anchor scrolling when reduced motion is requested."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "navigation-compress",
+        "value": "1180px"
+      },
+      {
+        "name": "navigation-menu-and-tablet",
+        "value": "1100px"
+      },
+      {
+        "name": "home-stack",
+        "value": "760px"
+      },
+      {
+        "name": "request-stack-and-sales-header",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "CPS Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Public action with immediate focus and restrained hover/press feedback.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Find Your Part <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:50px;padding:14px 22px;font:750 14px Manrope,sans-serif;border-radius:4px;border:0;cursor:pointer;background:#ffcc05;color:#20221f;transition:background-color 160ms ease-out,transform 120ms ease-out}.ds-button-primary:hover{background:#eabc00}.ds-button-primary:focus-visible{outline:3px solid #aa3023;outline-offset:4px}.ds-button-primary:active{transform:scale(.98)}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}"
+    },
+    {
+      "name": "CPS Outline Action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Public action with immediate focus and restrained hover/press feedback.",
+      "html": "<button class=\"ds-button-outline\" type=\"button\">Send Your Enquiry <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-button-outline{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:50px;padding:14px 22px;font:750 14px Manrope,sans-serif;border-radius:4px;border:1px solid #96988f;cursor:pointer;background:transparent;color:#20221f;transition:background-color 160ms ease-out,transform 120ms ease-out}.ds-button-outline:hover{background:#eeede7}.ds-button-outline:focus-visible{outline:3px solid #aa3023;outline-offset:4px}.ds-button-outline:active{transform:scale(.98)}@media(prefers-reduced-motion:reduce){.ds-button-outline{transition:none}}"
+    },
+    {
+      "name": "CPS Dark Action",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Public action with immediate focus and restrained hover/press feedback.",
+      "html": "<button class=\"ds-button-dark\" type=\"button\">Talk to a Technical Expert <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-button-dark{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:50px;padding:14px 22px;font:750 14px Manrope,sans-serif;border-radius:4px;border:0;cursor:pointer;background:#20221f;color:#fff;transition:background-color 160ms ease-out,transform 120ms ease-out}.ds-button-dark:hover{background:#383b33}.ds-button-dark:focus-visible{outline:3px solid #aa3023;outline-offset:4px}.ds-button-dark:active{transform:scale(.98)}@media(prefers-reduced-motion:reduce){.ds-button-dark{transition:none}}"
+    },
+    {
+      "name": "Request Primary Action",
+      "kind": "button",
+      "refersTo": "button-request-primary",
+      "description": "Warmer task action; disabled and pending presentation uses the same control.",
+      "html": "<button type=\"button\" class=\"ds-request-primary\">Continue</button>",
+      "css": ".ds-request-primary{padding:12px 18px;border:1px solid #856005;background:var(--yellow,#f5b512);color:var(--ink,#111315);border-radius:4px;font:700 16px/1.6 Manrope,Arial,sans-serif;cursor:pointer}.ds-request-primary:hover{background:#e5a710}.ds-request-primary:focus-visible{outline:3px solid var(--red,#b51621);outline-offset:4px}.ds-request-primary:disabled{opacity:.55;cursor:not-allowed}"
+    },
+    {
+      "name": "Find Part Field",
+      "kind": "input",
+      "refersTo": "input-find",
+      "description": "Homepage white field with a label above and a red focus outline.",
+      "html": "<div class=\"ds-find-field\"><label for=\"ds-find-oem\">OEM / OE / part number <span>(if known)</span></label><input id=\"ds-find-oem\" placeholder=\"Copy the number exactly\" /></div>",
+      "css": ".ds-find-field{font-family:Manrope,sans-serif;color:#20221f}.ds-find-field label{display:block;font-size:13px;font-weight:700;line-height:1.6;margin-bottom:8px}.ds-find-field label span{font-weight:400;color:#595c55}.ds-find-field input{width:100%;border:1px solid #9c9f93;background:#fff;color:#20221f;font:400 15px/normal Manrope,sans-serif;min-height:48px;padding:12px;border-radius:4px;caret-color:#b92f20}.ds-find-field input::placeholder{color:#62665b;opacity:1}.ds-find-field input:focus{outline:2px solid #aa3023;outline-offset:2px}"
+    },
+    {
+      "name": "Request Field",
+      "kind": "input",
+      "refersTo": "input-request",
+      "description": "Task field with optional annotation, invalid stroke and associated error copy.",
+      "html": "<div class=\"ds-request-field\"><label for=\"ds-request-email\">Email <span>(optional)</span></label><input id=\"ds-request-email\" type=\"email\" aria-invalid=\"true\" aria-describedby=\"ds-request-email-error\" value=\"synthetic-invalid\"/><p id=\"ds-request-email-error\">Enter a valid email address.</p></div>",
+      "css": ".ds-request-field{color:var(--ink,#111315);font:400 16px/1.6 Manrope,Arial,sans-serif}.ds-request-field label{display:block;font-weight:700;margin-bottom:8px}.ds-request-field label span{font-size:13px;font-weight:400;color:#4a4e52}.ds-request-field input{width:100%;font:inherit;padding:12px;border:1px solid #898e91;background:#fff;border-radius:4px;caret-color:#aa3023}.ds-request-field input[aria-invalid=true]{border:2px solid #a10e1b}.ds-request-field input:focus-visible{outline:3px solid var(--red,#b51621);outline-offset:4px}.ds-request-field p{color:#a10e1b;font-size:14px;margin:6px 0}"
+    },
+    {
+      "name": "Public Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-public",
+      "description": "Public link row; the compact preview shows the expanded mobile list treatment.",
+      "html": "<nav class=\"ds-public-nav\" aria-label=\"Main navigation\"><a href=\"#ds-find\">Find Your Part</a><a href=\"#ds-categories\">Categories</a><a href=\"#ds-supplier\">Supplier Registration</a><a href=\"#ds-contact\">Contact</a></nav>",
+      "css": ".ds-public-nav{display:flex;align-items:center;gap:20px;background:#faf9f5;color:#20221f;padding:18px 4%;border-bottom:1px solid #dedfd7;font:650 13px Manrope,sans-serif}.ds-public-nav a{padding:9px 0;min-height:44px;display:flex;align-items:center;color:inherit;text-decoration:none}.ds-public-nav a:hover{text-decoration:underline;text-underline-offset:5px}.ds-public-nav a:focus-visible{outline:3px solid #aa3023;outline-offset:4px}@media(max-width:1180px){.ds-public-nav{gap:16px;font-size:12px}}@media(max-width:1100px){.ds-public-nav{flex-direction:column;align-items:stretch;padding:18px 24px;border-bottom-color:#bfc2b6;font-size:14px;gap:3px}}"
+    },
+    {
+      "name": "Part System Shortcut",
+      "kind": "chip",
+      "refersTo": "chip-part-system",
+      "description": "A requirement shortcut with an outlined tool-like shape; no selected state.",
+      "html": "<button class=\"ds-part-system\" type=\"button\">Braking system</button>",
+      "css": ".ds-part-system{background:transparent;border:1px solid #989c8e;padding:10px 14px;min-height:44px;border-radius:4px;color:#20221f;cursor:pointer;font:400 12px Manrope,sans-serif}.ds-part-system:focus-visible{outline:3px solid #aa3023;outline-offset:4px}"
+    },
+    {
+      "name": "Unavailable Attachments Container",
+      "kind": "card",
+      "refersTo": "container-attachment-unavailable",
+      "description": "A dashed recovery container without a card shadow.",
+      "html": "<section class=\"ds-attachment\"><h3>Photos &amp; parts lists</h3><p>Uploads are not available in this review build. Add the part number or describe the information in your enquiry. No file has been uploaded or scanned.</p><button type=\"button\">Add supporting information to the part description</button></section>",
+      "css": ".ds-attachment{color:var(--ink,#111315);font:400 16px/1.6 Manrope,Arial,sans-serif;border:1px dashed #979b8e;border-radius:8px;padding:24px;margin-bottom:24px}.ds-attachment h3{font-size:18px;font-weight:700;letter-spacing:-.04em;margin:0 0 12px}.ds-attachment p{line-height:1.7;font-size:14px}.ds-attachment button{padding:12px 18px;border:1px solid #63696b;background:#fff;border-radius:4px;font:700 16px/1.6 Manrope,Arial,sans-serif;cursor:pointer}.ds-attachment button:hover{background:#eee}.ds-attachment button:focus-visible{outline:3px solid var(--red,#b51621);outline-offset:4px}"
+    },
+    {
+      "name": "Sales Utility",
+      "kind": "custom",
+      "refersTo": "control-sales",
+      "description": "The contact primitive rendered in flow for the panel; live placement is fixed and moves into the mobile header.",
+      "html": "<a class=\"ds-sales\" href=\"#ds-sales\" aria-label=\"WhatsApp Sales (opens WhatsApp)\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"/></svg><span>WhatsApp Sales</span></a>",
+      "css": ".ds-sales{display:inline-flex;align-items:center;gap:10px;background:#225c3c;color:#fff;padding:14px 18px;border-radius:8px;font:700 12px Manrope,sans-serif;box-shadow:0 5px 18px #20221f26;min-height:48px;text-decoration:none}.ds-sales:hover{background:#18462c}.ds-sales:focus-visible{outline:3px solid #aa3023;outline-offset:4px}@media(max-width:1100px){.ds-sales{padding:12px 14px}}@media(max-width:600px){.ds-sales{width:48px;height:48px;padding:12px;justify-content:center}.ds-sales span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.ds-sales svg{flex:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A sourcing desk organized around the visitor's requirement",
+    "overview": "The CPS world feels like a clear working desk: warm paper, ink charcoal, precise labels and a bright yellow action surface. Manrope gives the interface a plain, confident voice. The established red CPS mark remains an identity asset; red in the interface signals focus, identification or correction rather than competing with yellow actions.\n\nThe material character comes from machined-metal inspection photography, flat tonal passages and visible rules. Generous section space sits beside compact, useful forms. An asymmetric editorial image and yellow action bar give the world its recognizable signature; related screens carry the same typography, restrained corners and border-led structure. The chosen direction rejects page-wide hiding, endless brand marquees, parallax, form entrances and animated counters.",
+    "keyCharacteristics": [
+      "Warm paper and charcoal surfaces with confident yellow actions.",
+      "Clean Manrope hierarchy and legible, above-field labels.",
+      "Flat editorial sections, fine dividers and restrained corners.",
+      "Illustrative inspection imagery with visible context.",
+      "Immediate feedback and readable mobile task layouts."
+    ],
+    "rules": [
+      {
+        "name": "The Action Yellow Rule",
+        "body": "Use CPS Yellow for public primary actions and Request Amber for the existing request variant; preserve their distinct source values.",
+        "section": "colors"
+      },
+      {
+        "name": "The Plain Heading Rule",
+        "body": "Keep active public headings in Manrope and let the heading lead the content; the customer-access correction removes its redundant above-heading brand label.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Desk Rule",
+        "body": "Use tonal passages and rules for content hierarchy; retain the Sales utility's limited lift instead of introducing a general card-shadow system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** preserve the CPS identity asset, Manrope hierarchy and yellow/charcoal/warm-paper world.",
+      "**Do** keep homepage CPS Yellow and request Request Amber as the distinct implemented action variants.",
+      "**Do** use above-field labels, visible focus outlines and adjacent error messages.",
+      "**Do** extend open, ruled and tonal containers before adding raised cards.",
+      "**Do** keep the mobile Sales utility in its clear header position and retain the contrasting backings for white brand artwork.",
+      "**Do** keep immediate pending/recovery feedback and show a success reference only after acknowledgment."
+    ],
+    "donts": [
+      "**Don't** bring legacy serif headings, mono eyebrows or commercial card styling into the active public world.",
+      "**Don't** add page-wide reveal hiding, endless marquees, parallax, form entrances or animated counters.",
+      "**Don't** make every content group a rounded, shadow-bearing card.",
+      "**Don't** cover labels, editable fields or illustrative captions with fixed controls.",
+      "**Don't** turn brand references or illustrative inspection imagery into a visual claim of authorization or available stock."
+    ]
+  }
+}

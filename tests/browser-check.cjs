@@ -75,18 +75,18 @@ const target=new URL(base);assert.equal(target.protocol,'http:');assert.ok(['127
     const download=await page.request.get(`${base}/api/staff/attachments/${crypto.randomUUID()}`);assert.equal(download.status(),503);
     await page.goto(`${base}/staff`);await page.waitForURL('**/staff/login?error=access');assert.ok((await page.locator('body').innerText()).includes('not configured'));
     await page.goto(base);
-    await page.getByRole('button',{name:'Start your RFQ'}).click();
+    await page.locator('.hero-actions').getByRole('link',{name:'Send Your Enquiry'}).click();
     await page.waitForURL('**/request');
     await page.setViewportSize({width:1280,height:960});
-    await page.goto(base);await page.locator('.portal').click();await page.waitForURL('**/customer-access');
+    await page.goto(base);await page.locator('.public-nav').getByRole('link',{name:'Customer Login'}).click();await page.waitForURL('**/customer-access');
     await page.goto(base);
-    assert.equal(await page.locator('.header-search,.finder,.products,.browse-discovery,.quick-browse,.popular-searches').count(),0);
-    await page.locator('.brand-tile').first().click();await page.waitForURL('**/request?part=Dongfeng');
+    assert.equal(await page.locator('.header-search,.products,.browse-discovery,.quick-browse,.popular-searches').count(),0);
+    await page.locator('.brand-link').first().click();await page.waitForURL('**/request*');await page.getByLabel('Full name',{exact:false}).waitFor();
     assert.equal(await page.getByLabel('Part description',{exact:false}).count(),0); // starts with contact step
-    assert.match(page.url(),/part=Dongfeng/);
-    await page.goto(base);await page.locator('.category').first().click();
-    await page.waitForURL('**/request?part=Passenger*');
-    assert.match(page.url(),/Passenger%20Vehicle%20Parts/);
+    assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('cps-requirement-entry')).data.brand),'Dongfeng');
+    await page.goto(base);await page.locator('.category-link').first().click();
+    await page.waitForURL('**/request*');await page.getByLabel('Full name',{exact:false}).waitFor();
+    assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('cps-requirement-entry')).data.category),'Passenger Vehicle');
     await page.goto(base+'/request');
     await page.getByLabel('Full name',{exact:false}).fill('Phone-only synthetic QA');
     await page.getByLabel(/^Country/).fill('Qatar');

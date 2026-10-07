@@ -49,6 +49,7 @@ let ownedDatabase;
   assert.equal(sql(`select count(*) from public.cps_rfqs where id='${failedId}';`),'0');
   await require('./provider-integration.cjs')({sql,asUser,agent,other,admin,disabled,id});
   await require('./workspace-database.cjs')({sql,asyncSql,asUser,agent,other,admin,disabled,officeA,officeB,id});
+  await require('./vendor-database.cjs')({sql,asyncSql,asUser,agent,other,admin,disabled,officeA,officeB,id});
   const result={passed:true,postgres:'17.11',checks:['eight concurrent database submissions produce one reference and attachment','digest conflict rejected','anonymous read denied','authenticated ingestion RPC denied','office-scoped RFQ and attachment RLS','inactive staff denied','direct status bypass denied','cross-office mutation denied','optimistic concurrency and audit','attachment failure rolls back request'],liveSupabase:false};
   writeFileSync('evidence/database-results.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 })().catch(error=>{console.error(error);process.exitCode=1}).finally(()=>{

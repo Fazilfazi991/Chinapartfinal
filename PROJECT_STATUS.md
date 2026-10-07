@@ -1,6 +1,10 @@
 # China Parts Final project status
 
-Current status, 7 October 2026: **dedicated real Supabase connected and locally verified; public ingestion and uploads remain gated.** Read [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md) for the complete A–K acceptance report. The historical migration receipt below is superseded where it says providers are unconfigured.
+Latest client feedback: the enquiry-first redesign and separate private supplier workflow are implemented. Read [CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md](CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md) for the current A–P report, review categories/brands, verification evidence and remaining client data. The dedicated project now has eight migrations and 27 RLS-enabled tables. The activation milestone below is historical; its original seven migrations and provider architecture were preserved. Public supplier/RFQ ingestion, uploads, catalogue and production deployment remain closed by default.
+
+## Historical Supabase activation milestone
+
+Activation status, 7 October 2026, before the client-feedback changes: **dedicated real Supabase connected and locally verified; public ingestion and uploads remain gated.** Read [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md) for its A–K acceptance report. The older migration receipt below is superseded where it says providers are unconfigured.
 
 - Project **China Parts Final**, `cjregchcuxjcqazokqid`, existing Sydney `ap-southeast-2`, Chinaparts Website Free plan. No paid resource created.
 - Seven CLI-generated migrations actually applied through guarded authenticated-dashboard transactions; all hosted source hashes verified. 25 RLS-enabled tables, 13 invoker functions with empty search paths, public-only Data API/minimum grants, automatic future exposure disabled. Two private buckets; zero direct client Storage policies.

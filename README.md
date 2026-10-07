@@ -1,5 +1,7 @@
 # China Parts Final
 
+Current client-review implementation: read [CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md](CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md) and PRODUCT.md. The homepage now captures requirements, with correct brand/category/part-number entry, three public quality choices, one sales WhatsApp control and technical-help enquiry context. Supplier registration has separate private persistence/reference/audit and staff review. Public supplier ingestion has its own `CPS_VENDOR_SUBMISSIONS_ENABLED=false` default; Turnstile/scanner and production deployment remain gated. Historical activation reports describe the previous seven-migration baseline; the additive supplier migration is the eighth.
+
 Enquiry-first China auto parts website: customers capture vehicle/part/contact requirements, optionally attach supported references, and authorised staff manage enquiries and follow up. The first launch has no online selling.
 
 This independent baseline was migrated from the latest local China Parts Shop Production working tree on 7 October 2026, including its later unpushed changes. Destination: https://github.com/Fazilfazi991/Chinapartfinal, branch `main`. The dedicated real Supabase backend is now connected and locally verified. Read [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md) and PROJECT_STATUS.md for current acceptance and limitations. Earlier handoffs describe historical milestones.

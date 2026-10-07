@@ -1,5 +1,7 @@
 export function backendMode(env?: NodeJS.ProcessEnv): 'local'|'supabase'|'disabled';
 export function uploadsEnabled(env?: NodeJS.ProcessEnv): boolean;
+export function vendorBackendMode(env?:NodeJS.ProcessEnv):'disabled'|'local'|'supabase';
+export function vendorOriginAllowed(request:Request,env?:NodeJS.ProcessEnv):boolean;
 export function staffAuthReady(env?:NodeJS.ProcessEnv):boolean;
 export function persistenceReady(env?:NodeJS.ProcessEnv):boolean;
 export function workspaceWritesReady(env?:NodeJS.ProcessEnv):boolean;

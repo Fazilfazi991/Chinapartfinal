@@ -1,66 +1,370 @@
-"use client";
-import { useEffect, useState } from "react";
-import { navigationHref } from "../lib/navigation.mjs";
-import { ArrowRight, Bot, Camera, CarFront, Check, ChevronDown, ChevronRight, FileSpreadsheet, FileUp, Globe2, Hash, Menu, MessageCircle, Phone, Search, Send, Upload, X } from "lucide-react";
-
-const wa = "https://wa.me/447520688566?text=Hello%20China%20Parts%20Shop%2C%20I%20need%20help%20sourcing%20a%20spare%20part.";
-// Calls support enquiry-first presentation. Retain catalogue preview code for
-// scope reconciliation; this does not implement the proposal's full catalogue.
-const cataloguePreviewEnabled = false;
-const categories = ["Passenger Vehicle Parts","SUV & 4x4 Parts","Truck & Trailer Parts","Bus Parts","Heavy Equipment Parts","Crane Parts","Construction Machinery","Agricultural Machinery","Industrial Components"];
-const qualities = [["Genuine","Original vehicle / machine manufacturer boxed part.","Maximum assurance · Warranty-sensitive vehicles"],["OE","Original Equipment specification.","Factory specification · Strong value"],["OEM","Tier-1 component manufacturer.","High quality · Cost-effective premium sourcing"],["Aftermarket","Independent manufacturer product.","Wider availability · Flexible budgets"],["Replacement","Functional replacement alternative.","Budget-sensitive repairs · Practical availability"]];
-const audience = ["Vehicle Owners","Workshops","Fleet Operators","Spare Parts Dealers","Equipment Companies","Procurement Teams"];
-const faqs = ["What types of spare parts can I request?","Can I send a photo if I do not know the part number?","Can I submit an Excel parts list?","What is the difference between Genuine, OE, OEM, Aftermarket, and Replacement?","Can you assist with Chinese truck and heavy-equipment parts?","Do you serve customers outside China?","How do I receive a quotation?","Can businesses submit bulk requirements?"];
-
-function Logo(){return <a href="#top" className="logo"><img src="/cps-logo.png" alt="CPS China Parts Shop"/><span><b>CHINAPARTS</b><small>YOUR SOURCING PARTNER</small></span></a>}
-function Button({children,primary=true,onClick}:{children:React.ReactNode;primary?:boolean;onClick?:()=>void}){return <button onClick={onClick} className={primary?"btn primary":"btn"}>{children}<ArrowRight size={15}/></button>}
-
-export default function Home(){
- const [menu,setMenu]=useState(false),[finder,setFinder]=useState("Search Part"),[chat,setChat]=useState(false),[faq,setFaq]=useState<number|null>(null),[language,setLanguage]=useState(false),[notice,setNotice]=useState(false),[chatStep,setChatStep]=useState(0),[theme,setTheme]=useState<"premium"|"bright">("premium"),[themeNotice,setThemeNotice]=useState(false),[productExpanded,setProductExpanded]=useState(false),[browseTab,setBrowseTab]=useState<"brands"|"categories">("brands"),[browseMessage,setBrowseMessage]=useState("");
- const openRfq=(part?:unknown)=>{const value=typeof part==="string"?part:(document.querySelector<HTMLInputElement>(".header-search input")?.value||"");window.location.assign("/request"+(value?"?part="+encodeURIComponent(value.slice(0,200)):""))};
- const changeTheme=(next:"premium"|"bright")=>{localStorage.setItem("cps-home-theme",next);setTheme(next);setThemeNotice(true);window.setTimeout(()=>setThemeNotice(false),1800)};
- useEffect(()=>{const selected=new URLSearchParams(window.location.search).get("theme");if(selected==="premium"||selected==="bright")setTheme(selected);else if(localStorage.getItem("cps-home-theme")==="bright")setTheme("bright")},[]);
- useEffect(()=>{window.scrollTo({left:0,top:window.scrollY})},[]);
- useEffect(()=>{
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const targets=Array.from(document.querySelectorAll<HTMLElement>(".section-title,.category,.source-grid button,.quality-grid article,.audience-grid button,.steps article,.brands>div button,.product-grid article,.rfq-copy,.rfq-open,.capability-image,.capability-content,.resources article,.faq>div,.final .wrap"));
-  let previousY=window.scrollY;
-  let direction:"up"|"down"="down";
-  const onScroll=()=>{direction=window.scrollY<previousY?"up":"down";previousY=window.scrollY};
-  targets.forEach((target)=>target.classList.add("scroll-reveal"));
-  const observer=new IntersectionObserver((entries)=>entries.forEach((entry)=>{const target=entry.target as HTMLElement;if(entry.isIntersecting){target.dataset.revealDirection=direction;target.classList.add("is-visible")}else target.classList.remove("is-visible")}),{threshold:.12,rootMargin:"0px 0px -6% 0px"});
-  targets.forEach((target)=>observer.observe(target));window.addEventListener("scroll",onScroll,{passive:true});
-  return()=>{observer.disconnect();window.removeEventListener("scroll",onScroll);targets.forEach((target)=>target.classList.remove("scroll-reveal","is-visible"))};
- },[]);
- const chatReplies=["What type of vehicle or equipment is this for?","Do you know the brand or equipment make?","Do you have an OEM number or an image?","Great. I can prepare an enquiry for the parts team."];
- return <main id="top" className={theme==="bright"?"home-theme-bright":"home-theme-premium"}>
-  <header className="commerce-header"><div className="nav wrap commerce-top"><Logo/>{cataloguePreviewEnabled&&<div className="header-search" role="search"><button className="search-scope" onClick={openRfq}>Find Parts <ChevronDown size={14}/></button><label><Search size={18}/><input aria-label="Search parts" placeholder="Search by part name, OEM number, vehicle or equipment"/></label><button className="search-submit" onClick={openRfq} aria-label="Search parts"><Search size={19}/></button></div>}<div className="nav-actions commerce-actions"><a className="utility-rfq" href="/request"><Send size={17}/><span>Request<br/>Quote</span></a><a className="portal" href="/customer-access">Customer Portal</a><a className="talk" href={wa} target="_blank"><MessageCircle size={16}/> Talk to Expert</a><div className="version-switch" aria-label="Appearance"><button className={theme==="premium"?"active":""} onClick={()=>changeTheme("premium")}>Premium</button><button className={theme==="bright"?"active":""} onClick={()=>changeTheme("bright")}>Bright</button></div><span className="lang">English</span><Button onClick={openRfq}>Quick RFQ</Button><button className="hamb" onClick={()=>setMenu(true)} aria-label="Open navigation"><Menu/></button></div></div><div className="commerce-subnav"><div className="wrap"><a href="#parts"><Menu size={18}/> Browse Categories <ChevronDown size={14}/></a>{["Parts","Vehicle & Equipment","Brands","How It Works","Resources"].map(x=><a href={navigationHref(x)} key={x}>{x}</a>)}<span/><a href="#rfq">Upload Parts List</a><a href={wa} target="_blank">WhatsApp Support</a></div></div></header>
-  {menu&&<div className="mobile-menu"><button className="close" onClick={()=>setMenu(false)}><X/></button><Logo/><div>{["Parts","Categories","Brands","Request a Part","Track Enquiry","About","Contact","Customer Portal"].map(x=><a onClick={()=>setMenu(false)} href={navigationHref(x)} key={x}>{x}<ChevronRight/></a>)}</div><div className="mobile-version"><small>APPEARANCE</small><button className={theme==="premium"?"active":""} onClick={()=>changeTheme("premium")}>Premium</button><button className={theme==="bright"?"active":""} onClick={()=>changeTheme("bright")}>Bright</button></div><a href={wa} target="_blank" className="mobile-contact"><MessageCircle/> WhatsApp +44 7520 688566</a></div>}
-  <section className="hero"><picture><source media="(max-width: 650px)" srcSet="/hero-industrial-mobile.png"/><img src="/hero-industrial.png" alt="Chinese SUV, heavy truck and crane in an industrial logistics yard" fetchPriority="high"/></picture><div className="hero-shade"/><div className="wrap hero-content"><p className="eyebrow">GLOBAL CHINESE PARTS SOURCING</p><h1>The Right Part.<br/><i>From the Right Source.</i></h1><p className="lead">Genuine, OE, OEM, aftermarket, and replacement parts for Chinese vehicles, trucks, heavy equipment, and machinery — sourced for customers worldwide.</p><div className="hero-buttons"><Button onClick={openRfq}>Request a Quote</Button><a className="btn" href={wa} target="_blank"><MessageCircle size={15}/> Enquire on WhatsApp</a><a className="browse" href="#parts">Browse Categories <ArrowRight size={15}/></a></div></div></section>
-  {cataloguePreviewEnabled&&<section className="finder wrap"><div className="finder-head"><span className="rule"/><div><p className="eyebrow">QUICK PART FINDER</p><h2>Find Your Part</h2></div></div><div className="tabs">{["Search Part","Upload Photo","OEM Number","Parts List"].map(x=><button key={x} onClick={()=>setFinder(x)} className={finder===x?"active":""}>{x}</button>)}</div><div className="finder-form"><div className="input"><Search size={18}/><input aria-label={finder} placeholder={finder==="Search Part"?"Search product, vehicle, brand, OEM or part number":finder==="OEM Number"?"Enter OEM / Part Number":finder==="Upload Photo"?"Upload part or nameplate image":"Enter a requirement; attach a PDF in the RFQ"}/>{finder!=="Search Part"&&<Upload size={17}/>}</div><Button onClick={()=>openRfq(document.querySelector<HTMLInputElement>(".finder-form input")?.value)}>{finder==="Search Part"?"Find Part":"Request Part"}</Button></div></section>}
-  <section className="trust"><div className="wrap trust-grid">{[["01","Genuine · OE · OEM · Aftermarket","Multiple sourcing options"],["02","Worldwide Supply","Serving international customers"],["03","Technical Assistance","Part identification support"],["04","Fast RFQ Response","Structured quotation process"]].map(([n,t,d])=><div key={t}><b>{n}</b><span>{t}</span><small>{d}</small></div>)}</div></section>{cataloguePreviewEnabled&&<><BrowseDiscovery tab={browseTab} setTab={setBrowseTab} message={browseMessage} onMessage={(message)=>{setBrowseMessage(message);window.setTimeout(()=>setBrowseMessage(""),2600)}}/><QuickBrowse onClick={openRfq}/></>}
-  <SectionTitle id="parts" over="ENQUIRY CATEGORIES" title="Parts Across Every Major Segment" text="From passenger vehicles to cranes and industrial machinery, source requirements through one specialist team."/><section id="vehicle-equipment" className="wrap category-grid">{categories.map((x,i)=><button onClick={()=>openRfq(x)} className={`category ${i===0||i===2||i===4?"category-primary":""}`} key={x}><span className={'cat-art c'+i}></span><div><small>CHINESE PARTS</small><b>{x}</b><span>Explore sourcing options <ArrowRight size={15}/></span></div></button>)}</section>{cataloguePreviewEnabled&&<PopularSearches onClick={openRfq}/>}
-  <section className="source wrap"><div><p className="eyebrow">SOURCING MADE SIMPLE</p><h2>How Do You Want to<br/>Find Your Part?</h2></div><div className="source-grid"><button onClick={openRfq}><b>01</b><Hash className="source-icon"/><h3>OEM / Part Number</h3><p>Include the number with your enquiry.</p><ArrowRight/></button><button onClick={openRfq}><b>02</b><CarFront className="source-icon"/><h3>Vehicle Details</h3><p>Send the make, model, year, or chassis details you know.</p><ArrowRight/></button><button onClick={openRfq}><b>03</b><Camera className="source-icon"/><h3>Upload a Photo</h3><p>Send an image of the part or equipment nameplate.</p><ArrowRight/></button><button onClick={openRfq}><b>04</b><FileSpreadsheet className="source-icon"/><h3>Upload Parts List</h3><p>Perfect for workshops, fleets, wholesalers, and procurement teams.</p><ArrowRight/></button></div></section>
-  <section className="quality"><div className="wrap"><SectionTitle over="CLEAR QUALITY OPTIONS" title="Choose the Right Part Quality" text="Different requirements need different sourcing options. Our team helps you choose based on fitment, quality, budget, and availability."/><div className="quality-grid">{qualities.map(([x,y,z],i)=><article key={x}><span className={'quality-mark qm'+i} aria-hidden="true"><i/><i/><i/></span><h3>{x}</h3><p>{y}</p><small>{z}</small></article>)}</div><button className="text-link" onClick={()=>setChat(true)}>Not sure which one you need? Ask a Parts Expert <ArrowRight size={16}/></button></div></section>
-  <RequirementRoutes onClick={openRfq}/>
-  <section id="how-it-works" className="process"><div className="wrap"><SectionTitle over="HOW IT WORKS" title="From Requirement to Delivery" text="A clear, technical and structured path from first enquiry to delivery."/><div className="steps">{[["Send Requirement","Search, upload a photo, enter OEM number, or send a parts list."],["Part Identification","Our team reviews the vehicle, equipment, and part details."],["Sourcing & Verification","The appropriate sourcing option is identified and checked."],["Receive Your Quote","Price, availability, and delivery details are provided."],["Order & Delivery","Once confirmed, the order moves into processing and delivery."]].map(([x,y],i)=><article key={x}><b>0{i+1}</b><span></span><h3>{x}</h3><p>{y}</p></article>)}</div></div></section>
-  <section id="worldwide-service" className="global"><div className="wrap global-inner"><div><p className="eyebrow">ONE PROFESSIONAL CHANNEL</p><h2>China Sourcing.<br/><i>Worldwide Support.</i></h2><p>China Parts Shop connects international customers with reliable Chinese automotive, machinery, and equipment parts through one professional sourcing channel.</p><b className="intl">International Enquiries Welcome</b></div><div className="globe"><div className="orb"></div>{["GCC","Middle East","Africa","Asia","Europe","International"].map((x,i)=><span className={'region r'+i} key={x}>{x}</span>)}</div></div></section>
-  <section id="brands" className="brands wrap"><SectionTitle over="ENQUIRE BY BRAND" title="Your Brand or Equipment Make" text="We can help identify parts for a broad range of Chinese vehicles and equipment."/><div>{[{name:"Dongfeng",file:"dongfeng.png"},{name:"SINOTRUK",file:"sinotruk.png"},{name:"FOTON",file:"foton.svg"},{name:"JAC Motors",file:"jac.png"},{name:"Chery",file:"chery.png"},{name:"Geely",file:"geely.png"},{name:"XCMG",file:"xcmg.svg"},{name:"ZOOMLION",file:"zoomlion.svg"},{name:"SANY",file:"sany.svg"}].map((brand)=><button className="brand-tile" onClick={()=>openRfq(brand.name)} key={brand.name}><img src={`/brands/${brand.file}`} alt={`${brand.name} logo`}/></button>)}</div><button className="text-link" onClick={openRfq}>View All Brands <ArrowRight size={16}/></button></section>
-  {cataloguePreviewEnabled&&<section className="products"><div className="wrap"><SectionTitle over="REQUEST-LED SOURCING" title="Popular Parts & Recent Requests" text="Availability and specification are confirmed through a structured quotation."/><div className="product-grid">{[{name:"Brake Disc",image:"brake-rotor.png",type:"AUTOMOTIVE"},{name:"Brake Pad Set",image:"brake-pad-set.png",type:"AUTOMOTIVE"},{name:"Oil Filter",image:"hydraulic-filter.png",type:"AUTOMOTIVE"},{name:"Air Filter",image:"air-filter.png",type:"AUTOMOTIVE"},{name:"Alternator",image:"alternator.png",type:"ELECTRICAL"},{name:"Starter Motor",image:"alternator.png",type:"ELECTRICAL"},{name:"Clutch Kit",image:"brake-rotor.png",type:"TRUCK & TRAILER"},{name:"Truck Brake Chamber",image:"brake-pad-set.png",type:"TRUCK & TRAILER"},{name:"Hydraulic Filter",image:"hydraulic-filter.png",type:"HEAVY EQUIPMENT"},{name:"Wheel Bearing",image:"wheel-bearing.png",type:"AUTOMOTIVE"},{name:"Radiator",image:"air-filter.png",type:"COOLING"},{name:"Suspension Component",image:"wheel-bearing.png",type:"AUTOMOTIVE"}].slice(0,productExpanded?12:6).map(({name,image,type},i)=><article key={name}><div role="img" aria-label={name} className="part"><img src={`/products/${image}`} alt=""/></div><small>{type}</small><h3>{name}</h3><p>Example ref: CPS-{1200+i*87}</p><span>Available on Request</span><button onClick={()=>openRfq(name)}>Request Quote <ArrowRight size={14}/></button></article>)}</div>{!productExpanded&&<button className="text-link more-parts" onClick={()=>setProductExpanded(true)}>View More Parts <ArrowRight size={16}/></button>}</div></section>}
-  <section id="rfq" className="rfq wrap"><div className="rfq-copy"><p className="eyebrow">QUICK RFQ</p><h2>Need a Part?<br/><i>Send the Requirement.</i></h2><p>You do not need to know every technical detail. Send us what you have — part name, OEM number, VIN, chassis details, image, nameplate, or parts list.</p><div><Check/> Technical identification support</div><div><Check/> Quality options matched to requirement</div></div><button className="rfq-open" onClick={openRfq}><span className="rfq-image" role="img" aria-label="Parts inspection and procurement workspace"></span><FileUp/><b>Start your RFQ</b><span>Send a requirement in under two minutes</span><ArrowRight/></button></section>
-  <section id="contact" className="whatsapp"><div className="wrap"><MessageCircle/><div><h2>Need a faster answer?</h2><p>Send your requirement directly to our parts team.</p></div><a className="btn primary" href={wa} target="_blank">Chat on WhatsApp <ArrowRight size={15}/></a></div></section>
-  <section id="about" className="capability wrap"><div className="capability-image" role="img" aria-label="Automotive parts inspection in a warehouse"></div><div className="capability-content"><p className="eyebrow">WHY A SPECIALIST PARTNER</p><h2>Specialist Sourcing.<br/><i>Clearer Outcomes.</i></h2><p>One technical sourcing channel for requirements where correct identification, quality choice, and professional coordination matter.</p><div className="capability-points">{["Technical Part Identification","Bulk Requirement Handling","Multiple Quality Options","Structured International Sourcing"].map((x,i)=><article key={x}><b>0{i+1}</b><h3>{x}</h3></article>)}</div></div></section>
-  <section id="resources" className="resources"><div className="wrap"><SectionTitle over="PARTS KNOWLEDGE" title="Practical Guidance for Better Part Requests" text="Professional resources to make identifying and sourcing parts easier."/><div>{["Genuine vs OE vs OEM — What Is the Difference?","How to Find an OEM Part Number","What Information Helps Identify the Correct Spare Part?"].map((x,i)=><article className={'guide g'+i} key={x}><span>GUIDE 0{i+1}</span><h3>{x}</h3><button onClick={()=>window.location.assign("/guides/"+["quality-options","oem-number","request-information"][i])}>Read guide <ArrowRight size={15}/></button></article>)}</div></div></section>
-  <section id="faqs" className="faq wrap"><div><p className="eyebrow">COMMON QUESTIONS</p><h2>Parts Sourcing, Clearly Answered.</h2></div><div>{faqs.map((x,i)=><article key={x}><button onClick={()=>setFaq(faq===i?null:i)}>{x}<ChevronDown className={faq===i?"rot":""}/></button>{faq===i&&<p>{i===2?"This release accepts PNG, JPEG and PDF attachments. Excel and CSV parsing are not enabled; describe your requirement or attach a PDF list.":i===1?"Yes. Upload a clear image of the part or equipment nameplate and include any vehicle or equipment information you have.":"Send the details you have through our RFQ or WhatsApp. Our team will review the requirement and return with the relevant sourcing and quotation information."}</p>}</article>)}</div></section>
-  <section className="final"><div className="wrap"><p className="eyebrow">CHINA PARTS SHOP</p><h2>One Requirement.<br/><i>One Sourcing Partner.</i></h2><p>Send your vehicle, machinery, or spare-parts requirement and let our team help identify the right sourcing option.</p><Button onClick={openRfq}>Request a Quote</Button><a className="btn" href={wa} target="_blank">WhatsApp Our Team <ArrowRight size={15}/></a><small>+44 7520 688566 &nbsp; · &nbsp; parts@chinapartsshop.com</small></div></section>
-  <footer><div className="wrap footer-grid"><div><Logo/><p>Your China Spare Parts Sourcing Partner.</p><p>Professional sourcing support for Chinese automotive, commercial vehicle, heavy equipment, and machinery parts.</p></div>{[["Parts","Passenger Vehicles","Trucks & Trailers","Heavy Equipment","Crane Parts","Machinery Parts"],["Support","Request a Quote","Upload Parts List","Customer Portal","Contact","FAQs"],["Company","About","How It Works","Quality Options","Worldwide Service","Contact"]].map(([h,...links])=><details className="footer-links" key={h} open><summary>{h}<ChevronDown/></summary>{links.map(x=><a href={navigationHref(x,h)} key={x}>{x}</a>)}</details>)}<details className="footer-links contact-links" open><summary>Contact<ChevronDown/></summary><a href="tel:+447520688566">+44 7520 688566</a><a href="mailto:parts@chinapartsshop.com">parts@chinapartsshop.com</a><a href="#top">chinapartsshop.com</a><div className="social">in &nbsp; f &nbsp; ◎ &nbsp; ▶</div></details></div><div className="footbar wrap"><span>© 2026 China Parts Shop</span><div><button onClick={()=>setNotice(true)}>Prototype Information</button><a href="/policies">Privacy</a><a href="/policies">Terms</a><a href="/policies">Cookies</a></div></div></footer>
-  <div className="floaters"><a href={wa} target="_blank"><MessageCircle/> WhatsApp</a><button onClick={()=>setChat(true)}><Bot/> Chat</button></div><button className="mobile-chat-trigger" onClick={()=>setChat(true)} aria-label="Open parts assistant"><Bot/></button><div className="mobile-bar"><a href="tel:+447520688566"><Phone/>Call</a><a href={wa} target="_blank"><MessageCircle/>WhatsApp</a><button onClick={openRfq}><Send/>Quick RFQ</button></div>
-  {chat&&<div className="chat"><div className="chat-head"><div><Bot/><span><b>CPS Parts Assistant</b><small>Online · Demo Assistant</small></span></div><button onClick={()=>setChat(false)}><X/></button></div><div className="chat-body"><p className="bot-msg">Hello 👋<br/>I can help you find the right part or guide you to our team.</p>{chatStep>0&&<p className="bot-msg">{chatReplies[chatStep-1]}</p>}{chatStep===4?<Button onClick={()=>{setChat(false);openRfq()}}>Continue to RFQ</Button>:<div className="quick">{(chatStep===0?["Find a Part","Request a Quote","Search by OEM","Upload Part Photo","Upload Parts List","Track an Enquiry","Talk to an Expert"]:["Passenger Vehicle","Truck","Heavy Equipment","Crane","Machinery","Other"]).map(x=><button key={x} onClick={()=>x==="Talk to an Expert"?window.open(wa,"_blank"):x==="Track an Enquiry"?window.location.assign("/customer-access"):x==="Request a Quote"?openRfq():setChatStep(Math.min(4,chatStep+1))}>{x}<ChevronRight size={14}/></button>)}</div>}</div></div>}
-  {notice&&<div className="overlay"><section className="modal notice"><button className="close" onClick={()=>setNotice(false)}><X/></button><p className="eyebrow">PROTOTYPE INFORMATION</p><h2>Demonstration only</h2><p>This homepage is a visual and workflow demonstration. Product availability, brands, service regions, delivery estimates, and other operational information will be finalized with China Parts Shop before production launch.</p></section></div>}
- {themeNotice&&<div className="version-toast">Viewing {theme==="bright"?"Bright":"Premium"} Theme <small>{theme==="bright"?"Brighter commercial color direction.":"Premium brand-led color direction."}</small></div>}</main>
+import Image from "next/image";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  MessageCircle,
+  Wrench,
+  FileText,
+  ScanLine,
+  Truck,
+  Check,
+} from "lucide-react";
+import PublicHeader from "../components/PublicHeader";
+import FindPart from "../components/FindPart";
+import {
+  categories,
+  brands,
+  qualityOptions,
+  enquiryHref,
+  salesHref,
+  salesContact,
+  brandHref,
+} from "../lib/sourcing-config.mjs";
+import "./home.css";
+const sourcingSteps = [
+  {
+    title: "Send your requirement",
+    text: "A part number, description or equipment details gives us a place to start.",
+    icon: FileText,
+  },
+  {
+    title: "Identify & source",
+    text: "The team reviews identification details and sourcing options.",
+    icon: ScanLine,
+  },
+  {
+    title: "Review our response",
+    text: "Confirm the specification, quality option and proposed supply terms.",
+    icon: Check,
+  },
+  {
+    title: "Arrange supply",
+    text: "Supply and delivery follow the terms of your confirmed order.",
+    icon: Truck,
+  },
+];
+const resources = [
+  [
+    "quality-options",
+    "Genuine, OE or OEM?",
+    "Understand the terms before choosing a quality option.",
+  ],
+  [
+    "oem-number",
+    "Getting the part number right",
+    "The small details that make identification easier.",
+  ],
+  [
+    "request-information",
+    "A useful parts enquiry",
+    "What to include, from equipment details to supporting photos.",
+  ],
+];
+export default function Home() {
+  return (
+    <div className="sourcing-home" id="top">
+      <PublicHeader />
+      <main>
+        <section className="sourcing-hero">
+          <div className="hero-copy">
+            <h1>
+              We source the part
+              <br />
+              you need.
+            </h1>
+            <p>
+              Automotive & equipment parts sourcing.
+              <br />
+              Tell us your requirement. We’ll help identify the part and explore
+              the supply options.
+            </p>
+            <div className="hero-actions">
+              <a className="cps-action" href="#find-your-part">
+                Find Your Part <ArrowUpRight size={20} />
+              </a>
+              <a className="cps-outline" href="/request">
+                Send Your Enquiry <ArrowRight size={18} />
+              </a>
+            </div>
+            <a
+              className="hero-sales"
+              href={salesHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={19} />
+              WhatsApp Sales <ArrowUpRight size={16} />
+            </a>
+            <a
+              className="hero-technical"
+              href={enquiryHref({ purpose: "technical" })}
+            >
+              Need help identifying it? Talk to a Technical Expert{" "}
+              <ArrowRight size={16} />
+            </a>
+          </div>
+          <figure className="hero-visual">
+            <Image
+              src="/parts-inspection.png"
+              alt="Illustrative inspection of a mechanical part at a workbench"
+              fill
+              priority
+              sizes="(max-width: 760px) 100vw, 50vw"
+            />
+            <figcaption>
+              Every enquiry starts with the right identification.
+              <span>Illustrative part inspection</span>
+            </figcaption>
+          </figure>
+        </section>
+        <div className="sourcing-scope">
+          <span>Passenger & commercial vehicles</span>
+          <span>Heavy equipment & machinery</span>
+          <span>Genuine / OE / OEM</span>
+        </div>
+        <section className="home-section category-section" id="categories">
+          <div className="section-lead">
+            <h2>
+              Parts for the work
+              <br />
+              you do.
+            </h2>
+            <p>
+              Choose a category to start your enquiry. We source to your
+              requirement, including China-manufactured parts for vehicles and
+              equipment of other origins.
+            </p>
+          </div>
+          <div className="category-directory">
+            {categories.map((item) => (
+              <a
+                className="category-link"
+                key={item.value}
+                href={enquiryHref({ category: item.value })}
+              >
+                <span>
+                  {item.label}
+                  <small>{item.detail}</small>
+                </span>
+                <ArrowUpRight size={20} />
+              </a>
+            ))}
+          </div>
+        </section>
+        <section className="home-section find-section" id="find-your-part">
+          <div className="section-lead">
+            <h2>Find Your Part</h2>
+            <p>
+              No catalogue search needed. Start with what you know; the sourcing
+              team can help with the rest.
+            </p>
+          </div>
+          <FindPart />
+        </section>
+        <section className="home-section brand-section" id="brands">
+          <div className="section-inline">
+            <h2>Your brand. Your requirement.</h2>
+            <p>Choose a brand to carry it into your enquiry.</p>
+          </div>
+          <div
+            className="brand-rail"
+            role="list"
+            aria-label="Brands in the client-review selection"
+          >
+            {brands.map((brand) => (
+              <a
+                role="listitem"
+                className="brand-link"
+                href={brandHref(brand.name, {
+                  catalogueEnabled:
+                    process.env.CPS_PUBLIC_CATALOGUE_ENABLED === "true",
+                })}
+                key={brand.name}
+                aria-label={`Enquire about ${brand.name}`}
+              >
+                <img
+                  className={
+                    brand.darkBacking ? "brand-dark-backing" : undefined
+                  }
+                  src={"/brands/" + brand.asset}
+                  alt={brand.name}
+                  width="120"
+                  height="48"
+                />
+                <span>
+                  {brand.name}
+                  <ArrowUpRight size={14} />
+                </span>
+              </a>
+            ))}
+          </div>
+          <p className="section-note">
+            Have another brand or an unfamiliar part number?{" "}
+            <a href="/request">Send Your Enquiry</a>. Brand references help
+            identify requirements and do not imply manufacturer authorization.
+          </p>
+        </section>
+        <section className="home-section process-section" id="how-it-works">
+          <div className="section-lead">
+            <h2>
+              From requirement
+              <br />
+              to a sourcing response.
+            </h2>
+            <p>
+              A clear conversation at each step. Specifications and supply terms
+              are confirmed before an order proceeds.
+            </p>
+          </div>
+          <ol className="sourcing-process">
+            {sourcingSteps.map(({ title, text, icon: Icon }, i) => (
+              <li key={title}>
+                <div className="process-marker">
+                  <span>{i + 1}</span>
+                  <Icon size={24} />
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section className="home-section audience-section" id="who-we-serve">
+          <h2>Built around your working day.</h2>
+          <div className="audience-rows">
+            {[
+              [
+                "Workshop & Garage",
+                "Identify repair and maintenance parts with the details available at the bench.",
+              ],
+              [
+                "Fleet Operations",
+                "Bring vehicle requirements and maintenance parts into one clear enquiry.",
+              ],
+              [
+                "Procurement",
+                "Share a single requirement or a parts list for a structured sourcing response.",
+              ],
+            ].map(([title, text]) => (
+              <a href="/request" key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <ArrowUpRight size={24} />
+              </a>
+            ))}
+          </div>
+        </section>
+        <section className="home-section resource-section" id="resources">
+          <div className="section-inline">
+            <h2>A clearer enquiry starts here.</h2>
+            <p>Practical guidance for making the next conversation useful.</p>
+          </div>
+          <div className="resource-links">
+            {resources.map(([slug, title, text]) => (
+              <a href={"/guides/" + slug} key={slug}>
+                <FileText size={24} />
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <span>
+                  Read the guide <ArrowRight size={18} />
+                </span>
+              </a>
+            ))}
+          </div>
+          <p className="quality-line">
+            Discuss your preference:{" "}
+            {qualityOptions.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+            <a href="/guides/quality-options">What do these mean?</a>
+          </p>
+        </section>
+        <section className="technical-section" id="technical-assistance">
+          <div>
+            <Wrench size={32} />
+            <h2>
+              Not sure which
+              <br />
+              part you need?
+            </h2>
+          </div>
+          <div>
+            <p>
+              Bring your part number, equipment details or description. Request
+              technical assistance with identification before discussing
+              sourcing.
+            </p>
+            <a
+              className="cps-dark-action"
+              href={enquiryHref({ purpose: "technical" })}
+            >
+              Talk to a Technical Expert <ArrowUpRight size={20} />
+            </a>
+            <small>
+              Starts a technical-help enquiry for a human to review.
+            </small>
+          </div>
+        </section>
+        <section className="home-section supplier-section" id="suppliers">
+          <div>
+            <h2>
+              Supply parts?
+              <br />
+              Let’s get to know your business.
+            </h2>
+            <p>
+              Introduce your company, product range and the brands you supply.
+              The team reviews supplier registrations individually.
+            </p>
+          </div>
+          <a className="cps-outline" href="/supplier-registration">
+            Supplier Registration <ArrowUpRight size={20} />
+          </a>
+        </section>
+        <section className="contact-section" id="contact">
+          <div>
+            <h2>Tell us what you’re looking for.</h2>
+            <p>
+              A part number. A repair requirement. A parts list.
+              <br />
+              Start the conversation with the information you have.
+            </p>
+          </div>
+          <div>
+            <a className="cps-action" href="/request">
+              Send Your Enquiry <ArrowUpRight size={20} />
+            </a>
+            <a
+              className="contact-sales"
+              href={salesHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={20} /> WhatsApp Sales{" "}
+              <span>{salesContact.display}</span>
+            </a>
+          </div>
+        </section>
+      </main>
+      <footer className="public-footer">
+        <a className="public-brand" href="/">
+          <img src="/cps-logo.png" alt="" width="40" height="40" />
+          <span>
+            CHINA PARTS <strong>SHOP</strong>
+          </span>
+        </a>
+        <p>Automotive & equipment parts sourcing.</p>
+        <nav aria-label="Footer navigation">
+          <a href="#find-your-part">Find Your Part</a>
+          <a href="#categories">Categories</a>
+          <a href="#resources">Resources</a>
+          <a href="/supplier-registration">Supplier Registration</a>
+          <a href="/customer-access">Customer Login</a>
+          <a href="#contact">Contact</a>
+          <a href="/policies">Policies</a>
+        </nav>
+        <small>© {new Date().getFullYear()} China Parts Shop · English</small>
+      </footer>
+    </div>
+  );
 }
-function SectionTitle({over,title,text,id}:{over:string,title:string,text:string,id?:string}){return <div className="section-title wrap" id={id}><p className="eyebrow">{over}</p><h2>{title}</h2><p>{text}</p></div>}
-function BrowseDiscovery({tab,setTab,message,onMessage}:{tab:"brands"|"categories";setTab:(tab:"brands"|"categories")=>void;message:string;onMessage:(message:string)=>void}){const brands=[['Dongfeng','dongfeng.png'],['Sinotruk','sinotruk.png'],['Foton','foton.svg'],['JAC','jac.png'],['Chery','chery.png'],['Geely','geely.png'],['XCMG','xcmg.svg'],['Zoomlion','zoomlion.svg'],['SANY','sany.svg']];const categories=[['Passenger Vehicle Parts','hero-industrial.png'],['SUV & 4x4 Parts','hero-industrial-mobile.png'],['Truck & Trailer Parts','parts-inspection.png'],['Bus Parts','hero-industrial.png'],['Heavy Equipment Parts','parts-inspection.png'],['Crane Parts','hero-industrial-mobile.png'],['Construction Machinery','hero-industrial.png'],['Agricultural Machinery','hero-industrial-mobile.png'],['Engine Parts','alternator.png'],['Brake System','brake-rotor.png'],['Filters','hydraulic-filter.png'],['Electrical Parts','air-filter.png']];const items=tab==="brands"?brands:categories;const click=(name:string)=>window.location.assign("/request?part="+encodeURIComponent(name));return <section className="browse-discovery"><div className="wrap"><div className="browse-discovery-head"><div><p className="eyebrow">DISCOVER CPS</p><h2>Browse by Brand &amp; Category</h2><span>Start with your vehicle, equipment make, or the type of part you need.</span></div><button type="button" onClick={()=>click(tab==="brands"?"All brands":"All parts")}>View All Parts <ArrowRight size={15}/></button></div><div className="browse-tabs" role="tablist"><button type="button" role="tab" aria-selected={tab==="brands"} className={tab==="brands"?"active":""} onClick={()=>setTab("brands")}>Brands</button><button type="button" role="tab" aria-selected={tab==="categories"} className={tab==="categories"?"active":""} onClick={()=>setTab("categories")}>Categories</button></div><div className="browse-tiles">{items.map(([name,file])=><button type="button" key={name} onClick={()=>click(name)}><span className={tab==="brands"?"brand-visual":"category-visual"}><img src={tab==="brands"?`/brands/${file}`:file.includes(".png")&&!["hero-industrial.png","hero-industrial-mobile.png","parts-inspection.png"].includes(file)?`/products/${file}`:`/${file}`} alt={tab==="brands"?`${name} logo`:name}/></span><b>{name}</b></button>)}</div>{message&&<div className="browse-toast" role="status">{message}</div>}</div></section>}
-function QuickBrowse({onClick}:{onClick:()=>void}){const items=[["Engine",CarFront],["Brakes",Check],["Filters",Search],["Suspension",Hash],["Electrical",Upload],["Transmission",ChevronRight],["Cooling",Camera],["Hydraulic",FileSpreadsheet],["Body Parts",CarFront]];return <section className="quick-browse wrap"><div><p className="eyebrow">QUICK BROWSE PARTS</p><h2>Start with the component you need.</h2></div><div>{items.map(([name,Icon])=>{const ItemIcon=Icon as typeof CarFront;return <button onClick={onClick} key={name as string}><ItemIcon/><span>{name as string}</span><ArrowRight size={13}/></button>})}<button onClick={onClick} className="browse-all"><span>View All</span><ArrowRight size={13}/></button></div></section>}
-function PopularSearches({onClick}:{onClick:()=>void}){return <section className="popular-searches wrap"><b>Popular Searches</b><div>{["Brake Pads","Oil Filters","Truck Brake Chamber","Hydraulic Pump","Alternator","Clutch Kit","Sinotruk Parts","XCMG Parts","Dongfeng Parts","Crane Parts"].map(item=><button onClick={onClick} key={item}>{item}<ArrowRight size={12}/></button>)}</div></section>}
-function RequirementRoutes({onClick}:{onClick:()=>void}){const routes=[["Workshop & Garage","Maintenance, repair, and recurring replacement parts.","Source Workshop Parts",CarFront],["Fleet Operations","Commercial vehicle and fleet maintenance requirements.","Discuss Fleet Needs",Hash],["Heavy Equipment","Construction, crane, machinery, and hydraulic components.","Source Equipment Parts",Camera],["Bulk Procurement","Upload complete part lists, purchase orders, or recurring requirements.","Upload Parts List",FileSpreadsheet]];return <section className="requirement"><div className="wrap"><SectionTitle over="SOURCE BY REQUIREMENT" title="Choose the Sourcing Route That Fits." text="Different customers buy differently. Choose the sourcing route that fits your requirement."/><div className="requirement-grid">{routes.map(([title,copy,cta,Icon])=>{const RouteIcon=Icon as typeof CarFront;return <article key={title as string}><RouteIcon/><h3>{title as string}</h3><p>{copy as string}</p><button onClick={onClick}>{cta as string}<ArrowRight size={14}/></button></article>})}</div></div></section>}
