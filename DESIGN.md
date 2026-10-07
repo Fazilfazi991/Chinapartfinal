@@ -173,7 +173,7 @@ components:
 
 The CPS world feels like a clear working desk: warm paper, ink charcoal, precise labels and a bright yellow action surface. Manrope gives the interface a plain, confident voice. The established red CPS mark remains an identity asset; red in the interface signals focus, identification or correction rather than competing with yellow actions.
 
-The material character comes from machined-metal inspection photography, flat tonal passages and visible rules. Generous section space sits beside compact, useful forms. An asymmetric editorial image and yellow action bar give the world its recognizable signature; related screens carry the same typography, restrained corners and border-led structure. The chosen direction rejects page-wide hiding, endless brand marquees, parallax, form entrances and animated counters.
+The material character comes from illustrative industrial-yard, equipment, component-inspection and warehouse photography, flat tonal passages and visible rules. Generous section space sits beside compact, useful forms. The restored full-width industrial homepage hero uses a dark overlay and white headline with yellow emphasis; dedicated destinations extend the same world through split editorial introductions, image-led categories and readable guides. Related screens carry the same typography, restrained corners and border-led structure, with the yellow technical-help passage as a recognizable landmark. The chosen direction rejects page-wide hiding, endless brand marquees, parallax, form entrances and animated counters.
 
 **Key Characteristics:**
 - Warm paper and charcoal surfaces with confident yellow actions.
@@ -182,7 +182,7 @@ The material character comes from machined-metal inspection photography, flat to
 - Illustrative inspection imagery with visible context.
 - Immediate feedback and readable mobile task layouts.
 
-This is a record of the final implemented review world, extracted from `app/home.css`, `app/public.css`, `app/request/request.css`, `app/globals.css`, `app/fonts.css`, `app/layout.tsx`, `app/page.tsx` and the shared public/form components. The frontmatter records reused literal values; its spacing names describe observed roles, not an existing CSS-variable scale. The finish review closed three specified corrections. Neither that disposition nor this document approves future production behavior.
+This is a record of the implemented review world, extracted from `app/home.css`, `app/sourcing-pages.css`, `app/public.css`, `app/request/request.css`, `app/globals.css`, `app/fonts.css`, `app/layout.tsx`, `app/page.tsx` and the shared public/form components, including `PublicHeader` and `SourcingSite`. The multi-page extension preserves the incumbent identity and token frontmatter. Its narrative records the owner's restored industrial hero and standalone destinations. The frontmatter records reused literal values; its spacing names describe observed roles, not an existing CSS-variable scale. Neither the finish-review disposition nor this document approves future production behavior.
 
 ## Colors
 
@@ -215,7 +215,7 @@ The palette combines workshop yellow, warm white and olive-tinted charcoal, with
 **Character:** One clean sans-serif family carries the active public world. The local Manrope files support weights from 400 to 800 with `font-display: swap`. DM Mono and Playfair Display remain loaded for legacy styles; they are not the active public heading or label treatment.
 
 ### Hierarchy
-- **Display:** the frontmatter's `display` role drives the homepage promise. At the 1100 px breakpoint it becomes 48 px; at 760 px it becomes 44 px with line height 1.1. Headings balance wrapping.
+- **Display:** the frontmatter preserves the incumbent `display` role. The restored homepage promise has a surface-specific override of `clamp(48px, 5vw, 76px)` with line height 1.06; at 1100 px it becomes 60 px, and at 650 px it becomes 44 px with line height 1.08. Headings balance wrapping.
 - **Headline:** the `headline` role drives section headings. At 760 px these become 31 px. Inline section headings have a desktop 32 px variant; the contact heading has a desktop 34 px variant.
 - **Title:** `title` is the standard homepage subsection heading. The process uses a denser 18 px variant and guidance links a 23 px variant. Default heading weight is inherited where the component does not override it.
 - **Body:** `body` is the homepage baseline. The hero introduction is 18 px on desktop and 16 px on mobile; supporting rows and resources use 14 px. Hero, section and form-support copy use observed limits of 48 ch, 56 ch and 65 ch respectively; guidance prose permits 72 ch.
@@ -227,9 +227,11 @@ The palette combines workshop yellow, warm white and olive-tinted charcoal, with
 
 ## Layout
 
-The public world alternates open editorial sections with full-width tonal passages. The hero uses a maximum width of 1440 px, a 1.05:1 split, 44 px gap and padding of 48 px vertically at the top, 5% horizontally and 40 px at the bottom. Its inspection frame is 470 px tall, with the image focused at 65% center. Content sections cap at 1280 px with 76 px by 48 px padding; full-width passages align to an inner 1184 px measure through calculated gutters. Two-column section introductions use a 60 px gap.
+The public world alternates open editorial sections with full-width tonal passages. The restored homepage hero is a full-width industrial yard scene with a dark left-to-right overlay, a 648 px minimum height and white headline with yellow emphasis. Its content caps at 1440 px with 96 px top, 5% horizontal and 72 px bottom padding. Standalone page introductions retain a balanced two-column text/image composition, a 60 px gap, 56 px by 5% padding and a 420 px illustrative image frame. Content sections cap at 1280 px with 76 px by 48 px padding; full-width passages align to an inner 1184 px measure through calculated gutters. Two-column section introductions use a 60 px gap.
 
-At 1100 px, public sections use 32 px gutters and 56 px vertical section padding; the hero uses 40 px by 32 px padding and a 28 px gap. At 760 px, the hero and broad paired sections stack. Standard sections use 44 px by 22 px padding, while technical/contact passages use 40 px by 22 px. Actions stretch vertically and the image becomes 250 px tall. Category rows shift from three columns to two, resources from three to one, and the four-step process becomes a connected vertical sequence. The brand rail remains manually scrollable with proximity snapping; item widths fall from 176 px to 150 px.
+At 1100 px, public sections use 32 px gutters and 56 px vertical section padding; the restored homepage hero has a 620 px minimum height and content padding of 80 px top, 32 px horizontally and 64 px bottom. At 650 px, the homepage hero stacks text above a dedicated mobile industrial scene: the scene occupies the bottom 250 px, a vertical dark overlay protects the copy, content uses 40 px by 22 px padding with 260 px reserved below, and the section has a 760 px minimum height. Homepage hero actions stack and stretch. Broad paired sections stack at 760 px. Standard sections use 44 px by 22 px padding, while technical/contact passages use 40 px by 22 px. Image-led categories and resources adapt to narrower grids, and the connected process becomes vertical. The brand rail remains manually scrollable with proximity snapping.
+
+The homepage uses selected category and resource previews to lead into standalone Find Your Part, Categories, Resources, Suppliers, Technical Assistance, Customer Login and Contact destinations. Category details use relevant equipment imagery and carry category context into the enquiry; resource details use editorial headers, supporting imagery and a narrow reading column. Shared footer groups expose Company, Source parts, Resources and Partners links. These are extensions of the incumbent visual world rather than a replacement system.
 
 Homepage fields use two columns with gaps of 22 px vertically and 28 px horizontally, then one column with a 20 px gap at 760 px. Request and supplier pages share a 900 px shell, padded 40 px by 24 px with 64 px below, and a two-column field grid with a 24 px gap. At 600 px the shell becomes 24 px by 16 px with 48 px below, fields stack, and review key/value rows become one column. Request pages reserve 100 px below their content. Public anchored sections use a 100 px scroll margin.
 
@@ -239,7 +241,7 @@ The observed spacing is a practical rhythm rather than a rigid single-step scale
 
 ## Elevation & Depth
 
-Depth is mostly tonal and border-led. The header explicitly removes box shadow, although it retains the global header's 12 px backdrop blur. Warm paper, the slightly darker capture surface, charcoal and yellow create clear landmarks without enclosing every section in a raised card. Photography is clipped to a restrained frame. The floating Sales utility is the active public world's limited shadow-bearing exception.
+Depth is mostly tonal and border-led. The header explicitly removes box shadow; the multi-page stylesheet also removes its backdrop blur. Warm paper, the slightly darker capture surface, charcoal and yellow create clear landmarks without enclosing every section in a raised card. Supporting photography is clipped to a restrained frame, while the restored homepage hero is full-width with an overlay for legibility. The floating Sales utility is the active public world's limited shadow-bearing exception.
 
 ### Shadow Vocabulary
 - **Sales utility:** `0 5px 18px #20221f26`; a small functional lift that separates the fixed contact control from content.
@@ -282,9 +284,9 @@ Border-led, visibly editable fields with labels above the control.
 
 ### Navigation
 
-The public navigation is a warm-paper sticky header, with 18 px by 4% inset, a fine `#dedfd7` bottom border and no shadow. The brand combines the actual CPS image with stacked text. Desktop links use the frontmatter navigation role, a 20 px gap and 44 px minimum height; hover underlines have a five-pixel offset. There is no persistent active-link color treatment in the current header.
+The public navigation is a warm-paper sticky header, with 18 px by 4% inset, a fine `#dedfd7` bottom border and no shadow. The brand combines the actual CPS image with stacked text. Desktop links use the frontmatter navigation role, a 20 px gap and 44 px minimum height; hover underlines have a five-pixel offset. Major links lead to standalone routes. The active destination exposes `aria-current="page"` and a persistent two-pixel ink underline with seven-pixel offset. Nested category, resource and supplier routes keep their parent destination active; `/request` keeps Find Your Part active.
 
-At 1180 px, link type becomes 12 px and gaps become 16 px. At 1100 px, the bordered 44 px menu button opens an absolute, full-width warm-paper list directly below the header, with 18 px by 24 px inset, 14 px type and three-pixel gaps. It exposes expanded state and a navigation relationship; the icon changes between menu and close, and choosing a link closes the list. Public focus remains visible.
+At 1180 px, link type becomes 12 px and gaps become 16 px. At 1100 px, the bordered 44 px menu button opens an absolute, full-width warm-paper list directly below the header, with 18 px by 24 px inset, 14 px type and three-pixel gaps. It exposes expanded state and a navigation relationship; the icon changes between menu and close, and choosing a link closes the list. Escape closes the menu and returns focus to its button. Mobile navigation retains the same routes and active underline. Public focus remains visible.
 
 ### Sales Utility
 

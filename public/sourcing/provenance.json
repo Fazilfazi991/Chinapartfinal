@@ -1,0 +1,82 @@
+[
+  {
+    "file": "truck.webp",
+    "source": "https://unsplash.com/photos/white-freight-truck-on-road-during-daytime-EmEQ6kK_5P0",
+    "image": "https://images.unsplash.com/photo-1616432043562-3671ea2e5242",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 187866
+  },
+  {
+    "file": "bus.webp",
+    "source": "https://unsplash.com/photos/parked-blue-and-black-compertur-bus-T5jzpRTVF1U",
+    "image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 146896
+  },
+  {
+    "file": "crane.webp",
+    "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+    "image": "https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 239816
+  },
+  {
+    "file": "agriculture.webp",
+    "source": "https://unsplash.com/photos/green-and-yellow-tractor-in-garage-SPzzE4TYxZ0",
+    "image": "https://images.unsplash.com/photo-1614977645540-7abd88ba8e56",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 236210
+  },
+  {
+    "file": "engine.webp",
+    "source": "https://unsplash.com/photos/car-engine-bay-VurHDpO4VYI",
+    "image": "https://images.unsplash.com/photo-1527383418406-f85a3b146499",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 284398
+  },
+  {
+    "file": "warehouse.webp",
+    "source": "https://unsplash.com/photos/brown-cardboard-boxes-on-white-metal-rack-BNBA1h-NgdY",
+    "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 192790
+  },
+  {
+    "file": "workshop.webp",
+    "source": "https://unsplash.com/photos/gray-and-black-engine-xe-e69j6-Ds",
+    "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 106718
+  },
+  {
+    "file": "suv.webp",
+    "source": "https://unsplash.com/photos/black-jeep-wrangler-yDekvyZ52dU",
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 250882
+  },
+  {
+    "file": "equipment.webp",
+    "source": "https://unsplash.com/photos/yellow-caterpillar-excavator-digging-up-dirt-ZgmGq_eFmUs",
+    "image": "https://images.unsplash.com/photo-1503708928676-1cb796a0891e",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 376606
+  },
+  {
+    "file": "construction.webp",
+    "source": "https://unsplash.com/photos/yellow-crane-near-building-during-daytime-VoI2jd75M6Q",
+    "image": "https://images.unsplash.com/photo-1599707254554-027aeb4deacd",
+    "license": "Unsplash License",
+    "purpose": "Illustrative review photography, not CPS premises, inventory or affiliation",
+    "bytes": 279052
+  }
+]

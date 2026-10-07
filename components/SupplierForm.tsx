@@ -11,8 +11,10 @@ import Challenge from "./Challenge";
 export default function SupplierForm({
   mode,
   siteKey,
+  embedded=false,
 }: {
   mode: "local" | "supabase" | "disabled";
+  embedded?:boolean;
   siteKey?: string;
 }) {
   const [data, setData] = useState({ ...vendorBlank }),
@@ -85,18 +87,20 @@ export default function SupplierForm({
       setResetKey((old) => old + 1);
     }
   }
+  const PageContainer=embedded?"div":"main";
+  const SuccessHeading=embedded?"h2":"h1";
   return (
     <>
-      <PublicHeader />
-      <main className="request-page">
+      {!embedded && <PublicHeader />}
+      <PageContainer className={embedded?"request-page embedded-supplier":"request-page"}>
         <section className="request-shell supplier-shell">
           {reference ? (
             <div className="request-success">
-              <h1 ref={heading} tabIndex={-1}>
+              <SuccessHeading ref={heading} tabIndex={-1}>
                 {local
                   ? "Your test registration is saved"
                   : "Supplier registration received"}
-              </h1>
+              </SuccessHeading>
               <p>
                 Vendor reference:{" "}
                 <strong className="supplier-reference">{reference}</strong>
@@ -111,7 +115,7 @@ export default function SupplierForm({
             </div>
           ) : (
             <>
-              <h1>Supplier Registration</h1>
+              {embedded?<h2>Supplier Registration</h2>:<h1>Supplier Registration</h1>}
               <p className="supplier-intro">
                 Tell us about your company and the parts you supply. The
                 sourcing team reviews registrations individually.
@@ -291,7 +295,7 @@ export default function SupplierForm({
             </>
           )}
         </section>
-      </main>
+      </PageContainer>
     </>
   );
 }

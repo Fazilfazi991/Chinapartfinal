@@ -56,8 +56,10 @@ export default function RfqForm({
   mode = "local",
   allowUploads = true,
   siteKey,
+  embedded=false,
 }: {
   mode?: "local" | "supabase" | "disabled";
+  embedded?: boolean;
   allowUploads?: boolean;
   siteKey?: string;
 }) {
@@ -296,10 +298,12 @@ export default function RfqForm({
     setNotice("");
     setRemember(false);
   }
+  const PageContainer=embedded?"div":"main";
+  const SuccessHeading=embedded?"h2":"h1";
   return (
     <>
-      <PublicHeader />
-      <main className="request-page">
+      {!embedded && <PublicHeader />}
+      <PageContainer className={embedded ? "request-page embedded-enquiry" : "request-page"}>
         <section className="request-shell">
           {mode !== "supabase" && (
             <p className="request-mode">
@@ -310,11 +314,11 @@ export default function RfqForm({
           )}
           {reference ? (
             <div className="request-success">
-              <h1 ref={heading} tabIndex={-1}>
+              <SuccessHeading ref={heading} tabIndex={-1}>
                 {localTest
                   ? "Your test request is saved"
                   : "Your request has been received"}
-              </h1>
+              </SuccessHeading>
               <p>
                 Reference: <strong>{reference}</strong>
               </p>
@@ -330,11 +334,11 @@ export default function RfqForm({
             </div>
           ) : (
             <>
-              <h1>
+              {embedded ? <h2>Complete your sourcing enquiry</h2> : <h1>
                 {data.description.startsWith("Technical assistance — ")
                   ? "Technical assistance"
                   : "Send Your Enquiry"}
-              </h1>
+              </h1>}
               <p className="request-intro">
                 {data.description.startsWith("Technical assistance — ")
                   ? "Ask for human help identifying your part or equipment requirement. Add the details you have below."
@@ -673,7 +677,7 @@ export default function RfqForm({
             </>
           )}
         </section>
-      </main>
+      </PageContainer>
     </>
   );
 }

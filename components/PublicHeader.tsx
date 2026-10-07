@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
+import {usePathname} from "next/navigation";
 import { Menu, X } from "lucide-react";
 import {publicCopy} from '../lib/locale.mjs';
 const links=publicCopy().navigation;
 export default function PublicHeader() {
   const [open, setOpen] = useState(false);
+  const pathname=usePathname();
   return (
     <header className="public-header">
       <a className="public-brand" href="/" aria-label="China Parts Shop home">
@@ -17,9 +19,10 @@ export default function PublicHeader() {
         id="public-nav"
         className={open ? "public-nav is-open" : "public-nav"}
         aria-label="Main navigation"
+        onKeyDown={e=>{if(e.key==="Escape"){setOpen(false);document.querySelector<HTMLButtonElement>(".public-menu")?.focus();}}}
       >
         {links.map(([label, href]) => (
-          <a key={label} href={href} onClick={() => setOpen(false)}>
+          <a key={label} href={href} aria-current={(href==="/" ? pathname==="/" : pathname===href || pathname.startsWith(href+"/") || (href==="/find-your-part" && pathname==="/request")) ? "page":undefined} onClick={() => setOpen(false)}>
             {label}
           </a>
         ))}
