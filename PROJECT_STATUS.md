@@ -1,5 +1,20 @@
 # China Parts Final project status
 
+Current status, 7 October 2026: **dedicated real Supabase connected and locally verified; public ingestion and uploads remain gated.** Read [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md) for the complete A–K acceptance report. The historical migration receipt below is superseded where it says providers are unconfigured.
+
+- Project **China Parts Final**, `cjregchcuxjcqazokqid`, existing Sydney `ap-southeast-2`, Chinaparts Website Free plan. No paid resource created.
+- Seven CLI-generated migrations actually applied through guarded authenticated-dashboard transactions; all hosted source hashes verified. 25 RLS-enabled tables, 13 invoker functions with empty search paths, public-only Data API/minimum grants, automatic future exposure disabled. Two private buckets; zero direct client Storage policies.
+- Actual hosted RFQ persistence, eight concurrent deduplicated retries, changed-content conflict, scoped staff retrieval/review/audit, Auth/SSR login/refresh/logout/revocation and application restart passed. Full public Turnstile submission and scanner-approved attachment flows remain blocked; no bypass or fabricated scan was used.
+- **59 domain tests**, typecheck/build, **23 hosted SDK checks**, **15 hosted browser checks**, and all four isolated RFQ/workspace/navigation/standalone regression suites passed. Branding and dependencies retained. Environment copies/references are additionally excluded from standalone release output.
+- Final advisors: security 0 errors/0 warnings/3 intentional deny-client notices; performance 0 errors/0 warnings/10 unused-index notices. Leaked-password protection remains disabled/Pro-only despite the final database warning count.
+- All five disposable hosted users, two RFQs, related test records/private marker and local test password/cookie-state files were removed. Source/build secret scans passed; secrets/evidence/private fixtures remain ignored.
+
+Real-provider development is `http://127.0.0.1:4419`; preview/local backend disabled, workspace reads enabled, generic writes and future features off. No real administrator exists. Remaining work: Turnstile/scanner and complete public/file acceptance, SMTP/invite/recovery, owner-confirmed Auth identity/admin membership, staff/unassigned visibility and content/legal/assets approval, retention/orphan/backup restore and production-origin/hosting acceptance. Payments/checkout/final invoices/carriers/fulfilment remain disabled. Safe changes are authorized for `origin/main`; exact final SHAs/clean-tree receipts are recorded after push in ignored `evidence/activation-git-verification.json` and the completion response.
+
+**Vercel production deployment was not performed.** Unrelated projects, old deployments and recovery source remain untouched.
+
+## Historical clean migration receipt
+
 Migration date: 7 October 2026 (Asia/Dubai).
 Workspace: C:\Users\USER\Documents\Codex\China Parts Final
 Authoritative source: C:\Users\USER\Documents\Codex\2026-10-01\task-2\China Parts Shop Production

@@ -2,7 +2,7 @@
 
 Enquiry-first China auto parts website: customers capture vehicle/part/contact requirements, optionally attach supported references, and authorised staff manage enquiries and follow up. The first launch has no online selling.
 
-This independent baseline was migrated from the latest local China Parts Shop Production working tree on 7 October 2026, including its later unpushed changes. Destination: https://github.com/Fazilfazi991/Chinapartfinal, branch `main`. Read PROJECT_STATUS.md for current verification and limitations. Older handoffs describe historical milestones and previous repositories; they do not authorize deployment or provider activation.
+This independent baseline was migrated from the latest local China Parts Shop Production working tree on 7 October 2026, including its later unpushed changes. Destination: https://github.com/Fazilfazi991/Chinapartfinal, branch `main`. The dedicated real Supabase backend is now connected and locally verified. Read [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md) and PROJECT_STATUS.md for current acceptance and limitations. Earlier handoffs describe historical milestones.
 
 ## Stack and modules
 
@@ -18,9 +18,19 @@ Node 24, npm lockfile, Next.js 15 App Router, React 19, TypeScript, official Sup
 
 Use Node 24 and the existing npm lockfile. No package upgrades are required.
 
+The owner's local `.env.local` already contains the actual dedicated Supabase configuration. Keep it ignored and do not overwrite it. Real-provider development runs with:
+
+```powershell
+npm run dev -- --hostname 127.0.0.1 --port 4419
+```
+
+Auth and workspace reads use Supabase; public RFQs/uploads, generic workspace writes and customer/publication features remain gated. No real administrator exists until an owner-approved Auth UUID receives the trusted membership described in the activation report.
+
+For a separate clean clone with **no real credentials**, synthetic review setup is:
+
 ```powershell
 npm ci
-Copy-Item .env.example .env.local
+if (-not (Test-Path .env.local)) { Copy-Item .env.example .env.local }
 # Keep provider feature flags false and credential fields empty for safe review.
 $env:CPS_PREVIEW_ENABLED = 'true'
 $env:CPS_LOCAL_TEST_BACKEND = 'true'
@@ -44,9 +54,9 @@ Run production checks in a fresh shell without the development flags above; keep
 
 ## Production activation and scope
 
-Supabase production is unconfigured and untested. Provider-ready code is preserved; it is not a live backend. Review PROVIDER_ACTIVATION.md, SUPABASE_SETUP.md and database/README.md. The six ordered SQL templates are creation references, not already applied/rerunnable migrations. Actual schema/RLS/Auth/private Storage/Turnstile/scanner, authorised staff policies, persistence/redeploy/backup acceptance and approved public content are required before activation. Enable only accepted features.
+The dedicated project `cjregchcuxjcqazokqid` has seven applied migrations in `supabase/migrations`, 25 RLS-enabled application tables, real Auth and two private Storage buckets. Hosted persistence, scoped retrieval/review, sessions/revocation and private Storage denial passed. The `database/` SQL files remain historical creation references; do not replay them or regenerate applied versions. See the activation report for the authenticated-dashboard execution method and verified history. Full public Turnstile/submission, real scanner/file acceptance, SMTP, real admin, content/visibility and operational/backup acceptance remain required. Enable only accepted features.
 
 Payment/checkout/cart, final invoices, commercial fulfilment, carrier booking and automated shipping remain deferred and disabled. Future implementation requires confirmed business/provider choices. Customer portal/catalogue/publication/draft sharing launch timing remains an owner decision. See LAUNCH_SCOPE.md, IMPLEMENTATION_COVERAGE.md and REMAINING_DECISIONS.md.
 
-Production deployment is not authorized by this migration and was not performed. The authoritative recovery folder, original reference demo, previous deployments, LMT and Fusion are untouched.
+Vercel production deployment was not performed. The authoritative recovery folder, original reference demo, previous deployments, LMT and Fusion are untouched.
 

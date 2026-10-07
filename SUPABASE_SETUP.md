@@ -1,3 +1,5 @@
+> Current dedicated-provider status, 7 October 2026: see [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md). Seven migrations are actually applied on the approved China Parts project; hosted Auth, RLS, private Storage and no-attachment persistence/staff review acceptance passed. The older unconfigured/no-hosted-execution statements below are historical. Public Turnstile submissions, real scanning, SMTP/recovery, real administrator and deployment remain gated. Do not replay database templates or regenerate applied migration versions.
+
 Current closeout, 5 October 2026: workspace/guest-inbox/detail/parent/selector/conversation pagination, official gated recovery and approved-public sitemap/canonical code are implemented locally. The sixth review template is workspace-pagination-template.sql, after catalogue-photos. Read REMAINING_DECISIONS.md for current mandatory-versus-clarification scope; historical first-50/recovery/sitemap/account-upload gap statements below are superseded. Recovery and hosted capabilities remain disabled; no hosted application/email/push/deployment occurred.
 
 ## Current launch scope clarified on 5 October 2026

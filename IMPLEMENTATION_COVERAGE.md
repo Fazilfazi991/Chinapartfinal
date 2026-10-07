@@ -1,3 +1,5 @@
+> Current dedicated-provider status, 7 October 2026: see [SUPABASE_ACTIVATION_REPORT.md](SUPABASE_ACTIVATION_REPORT.md). Seven migrations are actually applied on the approved China Parts project; hosted Auth, RLS, private Storage and no-attachment persistence/staff review acceptance passed. The older unconfigured/no-hosted-execution statements below are historical. Public Turnstile submissions, real scanning, SMTP/recovery, real administrator and deployment remain gated. Do not replay database templates or regenerate applied migration versions.
+
 # Full proposal coverage — pagination/recovery closeout, 5 October 2026
 
 ## Current launch scope clarified on 5 October 2026

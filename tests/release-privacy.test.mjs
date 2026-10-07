@@ -22,3 +22,24 @@ test('release privacy cleanup strips generated records and manifests without tou
     await rm(root,{recursive:true,force:true});
   }
 });
+
+test('release removes traced and copied environment files while preserving local credentials and the template',async()=>{
+  const root=await mkdtemp(join(tmpdir(),'cps-release-fixture-'));
+  try{
+    await mkdir(join(root,'.next','standalone','nested'),{recursive:true});
+    await writeFile(join(root,'.env.local'),'synthetic local configuration');
+    await writeFile(join(root,'.next','standalone','.env.local'),'synthetic local configuration');
+    await writeFile(join(root,'.next','standalone','nested','.env.production'),'synthetic server configuration');
+    await writeFile(join(root,'.next','standalone','.env.example'),'EMPTY_PLACEHOLDER=');
+    await writeFile(join(root,'.next','route.nft.json'),JSON.stringify({version:1,files:['../.env.local','../.env.production','../.env.example','../lib/needed.mjs']}));
+    const result=await sanitizeRelease(root);assert.equal(result.removedReferences,2);assert.equal(result.removedEnvironmentFiles,2);
+    assert.equal(await readFile(join(root,'.env.local'),'utf8'),'synthetic local configuration');
+    assert.deepEqual(JSON.parse(await readFile(join(root,'.next','route.nft.json'),'utf8')).files,['../.env.example','../lib/needed.mjs']);
+    await assert.rejects(access(join(root,'.next','standalone','.env.local')));
+    await assert.rejects(access(join(root,'.next','standalone','nested','.env.production')));
+    assert.equal(await readFile(join(root,'.next','standalone','.env.example'),'utf8'),'EMPTY_PLACEHOLDER=');
+  }finally{
+    if(!root.startsWith(join(tmpdir(),'cps-release-fixture-')))throw new Error('Unexpected fixture path');
+    await rm(root,{recursive:true,force:true});
+  }
+});
