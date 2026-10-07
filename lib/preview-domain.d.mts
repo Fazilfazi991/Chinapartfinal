@@ -1,0 +1,23 @@
+export type PreviewActor = {id:string;label:string;role:'admin'|'agent'|'customer';office:string|null;company:string|null};
+export type PartLine = {description:string;partNumber:string;quantity:number};
+export type Comment = {id:string;body:string;author:string;visibility?:string;createdAt:string};
+export type DocumentState={customerVisible?:boolean;reviewVersion?:number|null;archived?:boolean};
+export type AdministrationSnapshot={offices:{id:string;name:string;active:boolean;version:number}[];staff:{id:string;userId:string;label:string;role:"admin"|"agent";officeId:string|null;active:boolean;version:number}[];members:{id:string;userId:string;label:string;companyId:string;active:boolean;version:number}[];rfqs:{id:string;reference:string;officeId:string|null;assigneeId:string|null;version:number;status:string}[]};
+export type PreviewRow = {id:string;version:number;createdAt:string;company?:string;office?:string;assignedTo?:string|null};
+export type PreviewRequest = PreviewRow & {reference:string;status:string;items:PartLine[];internalNote?:string;requirementContext?:Record<string,string>;comments:Comment[]};
+export type PreviewProduct = PreviewRow & {title:string;partNumber:string;brand:string;category:string;description:string;visibility:string;approved?:boolean;imageAsset?:string;photoId?:string|null;photoAlt?:string};
+export type PreviewCustomer = PreviewRow & {name:string;contact:string;email:string;note?:string};
+export type PreviewOrder = PreviewRow & DocumentState & {reference:string;requestId:string;status:string;items:PartLine[];shippingNote:string;tracking:({id:string;version:number;label:string;detail:string;createdAt:string}&DocumentState)[]};
+export type PreviewInvoice = PreviewRow & DocumentState & {reference:string;orderId:string;status:string;currency:string;scale:number;lines:{description:string;quantity:number;unitMinor:number}[];taxMinor:number|null;totals:{subtotal:number;tax:number|null;total:number|null}};
+export type PreviewPayment = PreviewRow & {invoiceId:string;status:string;amountMinor:number;currency:string;scale:number|null;description:string};
+export type PreviewSupport = PreviewRow & {subject:string;body:string;status:string;replies:Comment[]};
+export type PreviewContent = PreviewRow & {title:string;slug:string;body:string;status:string};
+export type PreviewAudit = PreviewRow & {actor:string;type:string;resource:string;description:string};
+export type PreviewSnapshot = {synthetic:boolean;revision:number;paging?:Record<string,{page:number;hasMore:boolean;listIds:string[]}>;administration?:AdministrationSnapshot;actor:PreviewActor;actors:PreviewActor[];customers:PreviewCustomer[];requests:PreviewRequest[];catalogue:PreviewProduct[];orders:PreviewOrder[];invoices:PreviewInvoice[];payments:PreviewPayment[];support:PreviewSupport[];content:PreviewContent[];audit:PreviewAudit[];integrations:Record<string,string>};
+export class PreviewError extends Error { status:number; constructor(message:string,status?:number); }
+export const previewActors:PreviewActor[];
+export const sections:string[];
+export function initialPreviewState():any;
+export function previewSnapshot(state:any,actorId:string):PreviewSnapshot;
+export function applyPreviewCommand(state:any,actorId:string,command:any):{state:any;result:{id:string;revision:number};repeated:boolean};
+export function invoiceTotals(invoice:any):{subtotal:number;tax:number|null;total:number|null};

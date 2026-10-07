@@ -1,0 +1,33 @@
+# Dependencies and generated builds
+node_modules/
+.next*/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+# Secrets: only the reviewed template is public
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Private development data, tools, browser artifacts and historical deliveries
+.local-data/
+.test-pg/
+.tools/
+reference-demo/
+deliverables/
+evidence/
+playwright-report/
+test-results/
+.cache/
+.tmp/
+*.log
+*.pid
+*.tmp
+*.bak
+npm-cli.tgz
+reference-demo.zip
+.DS_Store
+Thumbs.db

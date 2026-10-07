@@ -1,0 +1,43 @@
+// Existing isolated database/SDK fixture only. No hosted assets/accounts.
+const assert=require('node:assert/strict');
+const {randomUUID}=require('node:crypto');
+const sharp=require('sharp');
+const {writeFileSync}=require('node:fs');
+module.exports=async function({sql,asUser,fixture,admin,agent,customerA,disabled}){
+ const {writeCataloguePhoto,cataloguePhotoResponse}=await import('../lib/catalogue-photo.mjs');
+ const {writeWorkspaceCommand}=await import('../lib/workspace-writer.mjs');
+ const {scanFile}=await import('../lib/production-store.mjs');
+ const initialWrites=fixture.storageWrites,initialObjects=fixture.photoObjects.size;
+ const product=randomUUID();sql(`insert into public.cps_catalogue(id,title,category,description) values('${product}','Synthetic photo entry','Test fixtures','No approved product facts');`);
+ const bytes=await sharp({create:{width:3,height:2,channels:4,background:{r:255,g:0,b:0,alpha:1}}}).png().toBuffer();
+ const command={key:randomUUID(),type:'catalogue.photo.upload',input:{id:product,version:0,alt:'Synthetic test pixels',file:{type:'image/png',size:bytes.length,content:bytes.toString('base64')}}};
+ const scanner=image=>scanFile(image,{url:fixture.origin+'/scanner',token:'synthetic-scanner-token'});
+ const options={enabled:true,scanner};
+ const save=(actor,c=command)=>writeCataloguePhoto(fixture.client(actor),fixture.service,c,options);
+ const deny=(promise,status)=>assert.rejects(promise,e=>e.status===status);
+ let privileged=0;for(const [actor,status] of [['missing',401],[agent,403],[customerA,403],[disabled,403]])await deny(writeCataloguePhoto(fixture.client(actor),()=>{privileged++;return fixture.service()},command,options),status);assert.equal(privileged,0);
+ for(const mode of ['outage','blocked','wrong']){fixture.scannerMode=mode;await deny(save(admin),503);}assert.equal(fixture.storageWrites,initialWrites);assert.equal(sql(`select count(*) from public.cps_catalogue_media where product_id='${product}';`),'0');fixture.scannerMode='clean';
+ const uploads=await Promise.all(Array.from({length:8},()=>save(admin)));assert.equal(uploads.filter(x=>!x.repeated).length,1);assert.equal(new Set(uploads.map(x=>x.version)).size,1);assert.equal(fixture.storageWrites,initialWrites+1);
+ assert.equal(sql(`select count(*) from public.cps_catalogue_media where product_id='${product}';`),'1');assert.equal(sql(`select count(*) from public.cps_workspace_audit where resource_id='${product}' and operation='catalogue.photo.upload';`),'1');
+ await deny(save(admin,{...command,input:{...command.input,alt:'Changed text'}}),409);
+ const direct=await fixture.client(admin).rpc('cps_catalogue_photo_mutate',{p_actor:admin,p_key:randomUUID(),p_digest:'a'.repeat(64),p_product:product,p_version:1,p_photo:null});assert.ok(direct.error);
+ assert.throws(()=>asUser(admin,'select * from public.cps_catalogue_media;'),/permission denied/);assert.throws(()=>sql('set role anon;select * from public.cps_catalogue_media;'),/permission denied/);
+ const anonymous=fixture.client(fixture.publicKey);let factories=0;const factory=()=>{factories++;return fixture.service()};
+ const denied=await cataloguePhotoResponse(anonymous,factory,product);assert.equal(denied.status,404);assert.equal(factories,0);assert.equal((await denied.text()).includes('object_key'),false);
+ const staff=await cataloguePhotoResponse(fixture.client(agent),factory,product,{staff:true});assert.equal(staff.status,200);assert.equal(staff.headers.get('content-type'),'image/png');assert.equal(staff.headers.get('cache-control'),'private, no-store');assert.ok((await staff.arrayBuffer()).byteLength>0);
+ const saveEntry=(type,version)=>writeWorkspaceCommand(fixture.client(admin),fixture.service,'staff',{key:randomUUID(),type,input:{id:product,version}},{publication:true});
+ const reviewed=await saveEntry('catalogue.approve',1);const published=await saveEntry('catalogue.publish',reviewed.version);
+ const publicPhoto=await cataloguePhotoResponse(anonymous,factory,product);assert.equal(publicPhoto.status,200);assert.equal(publicPhoto.headers.get('x-content-type-options'),'nosniff');
+ const objectKey=sql(`select object_key from public.cps_catalogue_media where product_id='${product}';`);assert.ok((await anonymous.storage.from('cps-catalogue-private').download(objectKey)).error);assert.ok((await fixture.client(admin).storage.from('cps-catalogue-private').download(objectKey)).error);
+ // Corruption is rejected; no private path or URL in the response.
+ const original=fixture.photoObjects.get(objectKey);fixture.photoObjects.set(objectKey,Buffer.from('wrong bytes'));const corrupted=await cataloguePhotoResponse(anonymous,factory,product);assert.equal(corrupted.status,503);assert.equal((await corrupted.text()).includes(objectKey),false);fixture.photoObjects.set(objectKey,original);
+ const replacement={...command,key:randomUUID(),input:{...command.input,version:published.version,alt:'Changed synthetic image description'}};await save(admin,replacement);
+ assert.equal((await cataloguePhotoResponse(anonymous,factory,product)).status,404);assert.equal(sql(`select count(*) from public.cps_catalogue_media where product_id='${product}' and active;`),'1');
+ const currentVersion=Number(sql(`select version from public.cps_catalogue where id='${product}';`));await deny(save(admin,{...command,key:randomUUID(),input:{...command.input,version:0}}),409);
+ const removed=await writeCataloguePhoto(fixture.client(admin),fixture.service,{key:randomUUID(),type:'catalogue.photo.remove',input:{id:product,version:currentVersion}},options);assert.equal(removed.version,currentVersion+1);assert.equal((await cataloguePhotoResponse(fixture.client(admin),factory,product,{staff:true})).status,404);
+ assert.equal(sql(`select count(*) from public.cps_catalogue_media where product_id='${product}' and active;`),'0');assert.equal(fixture.photoObjects.size,initialObjects+2,'private old objects retained, no guessed deletion');
+ assert.throws(()=>asUser(admin,`select public.cps_catalogue_photo_resolve('${product}','${admin}');`),/permission denied/);
+ const oldRetry=await save(admin,command);assert.equal(oldRetry.repeated,true);assert.equal(sql(`select photo_id is null from public.cps_catalogue where id='${product}';`),'t');
+ const contenders=await Promise.allSettled([save(admin,{...command,key:randomUUID(),input:{...command.input,version:removed.version,alt:'Synthetic contender A'}}),save(admin,{...command,key:randomUUID(),input:{...command.input,version:removed.version,alt:'Synthetic contender B'}})]);assert.equal(contenders.filter(x=>x.status==='fulfilled').length,1);assert.equal(contenders.find(x=>x.status==='rejected').reason.status,409);assert.equal(sql(`select count(*) from public.cps_catalogue_media where product_id='${product}' and active;`),'1');
+ const result={passed:true,hostedAcceptance:false,checks:['fresh admin gate; no privileged client for missing/agent/customer/inactive','scanner outage/rejection/wrong hash fail closed before Storage','8 SDK uploads converge one row/object/audit/receipt','digest/stale conflict and authenticated RPC/table/storage bypass denied','private draft preview to staff; anonymous denies before privileged factory','reviewed current public photo through mediated private-bucket read','download bytes hash/size checked, corruption hides path','replacement/removal withdraw review/publication; inactive objects retained privately']};writeFileSync('evidence/catalogue-photo-provider-results.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+};

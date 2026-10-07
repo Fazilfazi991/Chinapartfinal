@@ -1,0 +1,10 @@
+import type {SupabaseClient} from '@supabase/supabase-js';
+export function customerAuthEnabled(env?:NodeJS.ProcessEnv):boolean;
+export function signInCustomer(client:SupabaseClient,email:unknown,password:unknown):Promise<unknown>;
+export function acceptCustomerInvitation(client:SupabaseClient,token:unknown,type:unknown):Promise<unknown>;
+export function setCustomerPassword(client:SupabaseClient,password:unknown,confirmation:unknown):Promise<void>;
+export function signOutCustomer(client:SupabaseClient):Promise<void>;
+export function accountOrigin(env?:NodeJS.ProcessEnv):string|null;
+export function customerRecoveryEnabled(env?:NodeJS.ProcessEnv):boolean;
+export function requestPasswordRecovery(client:SupabaseClient,email:unknown,env?:NodeJS.ProcessEnv):Promise<{message:string;error:boolean}>;
+export function acceptCustomerRecovery(client:SupabaseClient,token:unknown,type:unknown,env?:NodeJS.ProcessEnv):Promise<unknown>;
