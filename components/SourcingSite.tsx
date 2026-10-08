@@ -15,6 +15,7 @@ import {
   findPartHref,
 } from "../lib/sourcing-pages.mjs";
 import { approvedSiteOrigin } from "../lib/site-indexing.mjs";
+import { brands } from "../lib/sourcing-config.mjs";
 export function pageMetadata(
   title: string,
   description: string,
@@ -92,7 +93,7 @@ export function PublicFooter() {
 }
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="sourcing-home multipage-site">
+    <div className="sourcing-home multipage-site demo-restoration">
       <PublicHeader />
       <main>{children}</main>
       <PublicFooter />
@@ -154,6 +155,8 @@ export function CategoryGrid({ preview = false }: { preview?: boolean }) {
           "passenger-vehicles",
           "trucks-trailers",
           "heavy-equipment",
+          "suv-4x4",
+          "cranes",
           "industrial-components",
         ].includes(c.slug),
       )
@@ -161,25 +164,30 @@ export function CategoryGrid({ preview = false }: { preview?: boolean }) {
   return (
     <div className={"visual-categories" + (preview ? " category-preview" : "")}>
       {chosen.map((c) => (
-        <a
-          className="visual-category"
-          key={c.slug}
-          href={"/categories/" + c.slug}
-        >
-          <div className="category-photo">
-            <Image
-              src={c.image}
-              alt={c.label + " illustrative equipment context"}
-              fill
-              sizes="(max-width:600px) 100vw, (max-width:1100px) 50vw, 400px"
-            />
-          </div>
-          <div>
-            <h3>{c.label}</h3>
-            <p>{c.detail}</p>
-            <ArrowUpRight size={22} />
-          </div>
-        </a>
+        <article className="category-panel" key={c.slug}>
+          <a
+            className="visual-category"
+            href={findPartHref({ category: c.value })}
+          >
+            <div className="category-photo">
+              <Image
+                src={c.image}
+                alt={c.label + " illustrative equipment context"}
+                fill
+                sizes="(max-width:600px) 100vw, (max-width:1100px) 50vw, 400px"
+              />
+            </div>
+            <div>
+              <h3>{c.label}</h3>
+              <p>{c.detail}</p>
+              <span className="category-enquiry">Find Your Part</span>
+              <ArrowUpRight size={22} />
+            </div>
+          </a>
+          <a className="category-detail-link" href={"/categories/" + c.slug}>
+            Category guide <ArrowRight size={15} />
+          </a>
+        </article>
       ))}
     </div>
   );
@@ -200,12 +208,49 @@ export function ArticleLinks({ exclude }: { exclude?: string }) {
               />
             </div>
             <h3>{a.title}</h3>
+            <small className="article-type">Parts knowledge · Guide</small>
             <p>{a.summary}</p>
             <span>
               Read the guide <ArrowRight size={18} />
             </span>
           </a>
         ))}
+    </div>
+  );
+}
+export function BrandDiscovery() {
+  return (
+    <div
+      className="brand-rail brand-discovery"
+      role="list"
+      aria-label="Brands in the client-review selection"
+    >
+      {brands.map((b) => (
+        <a
+          role="listitem"
+          className="brand-link"
+          href={findPartHref({ brand: b.name })}
+          key={b.name}
+          aria-label={"Find parts for " + b.name}
+        >
+          <span
+            className={
+              "brand-disc" + (b.darkBacking ? " brand-dark-backing" : "")
+            }
+          >
+            <img
+              src={"/brands/" + b.asset}
+              alt={b.name}
+              width="140"
+              height="70"
+            />
+          </span>
+          <span>
+            {b.name}
+            <ArrowUpRight size={14} />
+          </span>
+        </a>
+      ))}
     </div>
   );
 }

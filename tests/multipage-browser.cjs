@@ -102,16 +102,28 @@ const shots = {
                 "/suppliers/register",
               ].includes(path)));
         if (shot) {
-          const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+          const pageHeight = await page.evaluate(
+            () => document.documentElement.scrollHeight,
+          );
           for (let top = 0; top < pageHeight; top += 700) {
-            await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), top);
+            await page.evaluate(
+              (y) => window.scrollTo({ top: y, behavior: "instant" }),
+              top,
+            );
             await page.waitForTimeout(80);
           }
           await page.waitForFunction(() =>
             [...document.images].every((i) => i.complete && i.naturalWidth > 0),
           );
-          await page.evaluate(()=>window.scrollTo({top:0,left:0,behavior:"instant"}));
-          await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+          await page.evaluate(() =>
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" }),
+          );
+          await page.evaluate(
+            () =>
+              new Promise((resolve) =>
+                requestAnimationFrame(() => requestAnimationFrame(resolve)),
+              ),
+          );
           await page.screenshot({
             path:
               out +
@@ -151,7 +163,7 @@ const shots = {
     ]);
     assert.equal(
       await page.locator(".category-preview .visual-category").count(),
-      4,
+      6,
     );
     assert.equal(await page.locator(".editorial-links>a").count(), 3);
     for (const link of await page.locator('a[href^="https://wa.me/"]').all()) {
@@ -161,7 +173,7 @@ const shots = {
       );
     }
     checks.push(
-      "Real menu routes; homepage has four category previews and three resources; WhatsApp destination retained without sending",
+      "Real menu routes; homepage has six category previews and three resources; WhatsApp destination retained without sending",
     );
     await page.locator("#find-description").fill("Synthetic hydraulic filter");
     await page.locator("#find-oem").fill("QA/OE-001");
@@ -232,6 +244,36 @@ const shots = {
       "Heavy Equipment",
     );
     checks.push("Category detail → complete sourcing flow preserves category");
+    await page.goto(base + "/categories");
+    await page.locator(".visual-category").first().click();
+    assert.equal(new URL(page.url()).pathname, "/find-your-part");
+    await contact();
+    assert.equal(
+      await page
+        .getByLabel("Vehicle or equipment category", { exact: false })
+        .inputValue(),
+      categoryPages[0].value,
+    );
+    checks.push(
+      "Primary category photo card opens the enquiry directly with its category prefilled",
+    );
+    await page.goto(base);
+    await page
+      .getByLabel("Part description or reference", { exact: true })
+      .fill("Synthetic header reference QA-123");
+    await page.locator(".header-requirement button").click();
+    await contact();
+    await page
+      .getByLabel("Vehicle or equipment category", { exact: false })
+      .selectOption("Other");
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
+    assert.equal(
+      await page.getByLabel("Part description", { exact: true }).inputValue(),
+      "Synthetic header reference QA-123",
+    );
+    checks.push(
+      "Header requirement capture enters the main enquiry with the typed description preserved",
+    );
     await page.goto(base);
     await page.locator(".brand-link").first().click();
     await contact();
@@ -262,11 +304,51 @@ const shots = {
     await page.goto(base + "/customer-access");
     assert.equal(await page.locator("input[type=password]").count(), 0);
     assert.match(await page.locator("body").innerText(), /not available yet/);
+    const noticeContrast = await page
+      .locator(".customer-access-panel .request-mode")
+      .evaluate((el) => {
+        const style = getComputedStyle(el);
+        const luminance = (color) => {
+          const channels = color
+            .match(/[\d.]+/g)
+            .slice(0, 3)
+            .map(Number)
+            .map((v) => v / 255)
+            .map((v) =>
+              v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4,
+            );
+          return (
+            0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
+          );
+        };
+        const foreground = luminance(style.color),
+          background = luminance(style.backgroundColor);
+        return (
+          (Math.max(foreground, background) + 0.05) /
+          (Math.min(foreground, background) + 0.05)
+        );
+      });
+    assert.ok(
+      noticeContrast >= 4.5,
+      "Customer access notice contrast must remain readable",
+    );
     checks.push(
       "Supplier intake and customer login gates preserved without vendor/customer writes",
     );
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(base);
+    const salesBounds = await page
+        .locator("[data-floating-whatsapp]")
+        .boundingBox(),
+      menuBounds = await page.locator(".public-menu").boundingBox();
+    assert.ok(
+      salesBounds.x + salesBounds.width <= menuBounds.x ||
+        menuBounds.x + menuBounds.width <= salesBounds.x,
+      "Mobile WhatsApp and navigation controls must not overlap",
+    );
+    checks.push(
+      "Customer notice meets text contrast requirements and mobile header controls do not overlap",
+    );
     await page
       .getByRole("button", { name: "Open navigation", exact: true })
       .click();

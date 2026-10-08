@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-07T15:58:47.602Z",
+  "generatedAt": "2026-10-08T07:56:58.076747+00:00",
   "title": "Design System: China Parts Shop",
   "extensions": {
     "colorMeta": {
@@ -393,6 +393,201 @@
           "oklch(83.571% 0.067973 155.629)",
           "oklch(95.000% 0.067973 155.629)"
         ]
+      },
+      "discovery-paper": {
+        "role": "neutral",
+        "displayName": "Discovery Paper",
+        "canonical": "#f1f1eb",
+        "tonalRamp": [
+          "oklch(15.000% 0.007956 106.549)",
+          "oklch(26.429% 0.007956 106.549)",
+          "oklch(37.857% 0.007956 106.549)",
+          "oklch(49.286% 0.007956 106.549)",
+          "oklch(60.714% 0.007956 106.549)",
+          "oklch(72.143% 0.007956 106.549)",
+          "oklch(83.571% 0.007956 106.549)",
+          "oklch(95.000% 0.007956 106.549)"
+        ]
+      },
+      "component-paper": {
+        "role": "neutral",
+        "displayName": "Component Paper",
+        "canonical": "#f3f3ee",
+        "tonalRamp": [
+          "oklch(15.000% 0.006622 106.523)",
+          "oklch(26.429% 0.006622 106.523)",
+          "oklch(37.857% 0.006622 106.523)",
+          "oklch(49.286% 0.006622 106.523)",
+          "oklch(60.714% 0.006622 106.523)",
+          "oklch(72.143% 0.006622 106.523)",
+          "oklch(83.571% 0.006622 106.523)",
+          "oklch(95.000% 0.006622 106.523)"
+        ]
+      },
+      "photo-ink": {
+        "role": "neutral",
+        "displayName": "Photo Ink",
+        "canonical": "#15181a",
+        "tonalRamp": [
+          "oklch(15.000% 0.006104 236.875)",
+          "oklch(26.429% 0.006104 236.875)",
+          "oklch(37.857% 0.006104 236.875)",
+          "oklch(49.286% 0.006104 236.875)",
+          "oklch(60.714% 0.006104 236.875)",
+          "oklch(72.143% 0.006104 236.875)",
+          "oklch(83.571% 0.006104 236.875)",
+          "oklch(95.000% 0.006104 236.875)"
+        ]
+      },
+      "closing-charcoal": {
+        "role": "neutral",
+        "displayName": "Closing Charcoal",
+        "canonical": "#292c26",
+        "tonalRamp": [
+          "oklch(15.000% 0.011504 128.914)",
+          "oklch(26.429% 0.011504 128.914)",
+          "oklch(37.857% 0.011504 128.914)",
+          "oklch(49.286% 0.011504 128.914)",
+          "oklch(60.714% 0.011504 128.914)",
+          "oklch(72.143% 0.011504 128.914)",
+          "oklch(83.571% 0.011504 128.914)",
+          "oklch(95.000% 0.011504 128.914)"
+        ]
+      },
+      "footer-charcoal": {
+        "role": "neutral",
+        "displayName": "Footer Charcoal",
+        "canonical": "#191c18",
+        "tonalRamp": [
+          "oklch(15.000% 0.008877 137.833)",
+          "oklch(26.429% 0.008877 137.833)",
+          "oklch(37.857% 0.008877 137.833)",
+          "oklch(49.286% 0.008877 137.833)",
+          "oklch(60.714% 0.008877 137.833)",
+          "oklch(72.143% 0.008877 137.833)",
+          "oklch(83.571% 0.008877 137.833)",
+          "oklch(95.000% 0.008877 137.833)"
+        ]
+      },
+      "restoration-border": {
+        "role": "neutral",
+        "displayName": "Restoration Border",
+        "canonical": "#e1e2db",
+        "tonalRamp": [
+          "oklch(15.000% 0.009446 113.174)",
+          "oklch(26.429% 0.009446 113.174)",
+          "oklch(37.857% 0.009446 113.174)",
+          "oklch(49.286% 0.009446 113.174)",
+          "oklch(60.714% 0.009446 113.174)",
+          "oklch(72.143% 0.009446 113.174)",
+          "oklch(83.571% 0.009446 113.174)",
+          "oklch(95.000% 0.009446 113.174)"
+        ]
+      },
+      "footer-divider": {
+        "role": "neutral",
+        "displayName": "Footer Divider",
+        "canonical": "#45483f",
+        "tonalRamp": [
+          "oklch(15.000% 0.015288 122.119)",
+          "oklch(26.429% 0.015288 122.119)",
+          "oklch(37.857% 0.015288 122.119)",
+          "oklch(49.286% 0.015288 122.119)",
+          "oklch(60.714% 0.015288 122.119)",
+          "oklch(72.143% 0.015288 122.119)",
+          "oklch(83.571% 0.015288 122.119)",
+          "oklch(95.000% 0.015288 122.119)"
+        ]
+      },
+      "photo-muted": {
+        "role": "neutral",
+        "displayName": "Photo Muted",
+        "canonical": "#e7e9e3",
+        "tonalRamp": [
+          "oklch(15.000% 0.008277 121.636)",
+          "oklch(26.429% 0.008277 121.636)",
+          "oklch(37.857% 0.008277 121.636)",
+          "oklch(49.286% 0.008277 121.636)",
+          "oklch(60.714% 0.008277 121.636)",
+          "oklch(72.143% 0.008277 121.636)",
+          "oklch(83.571% 0.008277 121.636)",
+          "oklch(95.000% 0.008277 121.636)"
+        ]
+      },
+      "hero-muted": {
+        "role": "neutral",
+        "displayName": "Hero Muted",
+        "canonical": "#eceee7",
+        "tonalRamp": [
+          "oklch(15.000% 0.009532 119.582)",
+          "oklch(26.429% 0.009532 119.582)",
+          "oklch(37.857% 0.009532 119.582)",
+          "oklch(49.286% 0.009532 119.582)",
+          "oklch(60.714% 0.009532 119.582)",
+          "oklch(72.143% 0.009532 119.582)",
+          "oklch(83.571% 0.009532 119.582)",
+          "oklch(95.000% 0.009532 119.582)"
+        ]
+      },
+      "technical-ochre": {
+        "role": "neutral",
+        "displayName": "Technical Ochre",
+        "canonical": "#7b5b00",
+        "tonalRamp": [
+          "oklch(15.000% 0.100699 84.662)",
+          "oklch(26.429% 0.100699 84.662)",
+          "oklch(37.857% 0.100699 84.662)",
+          "oklch(49.286% 0.100699 84.662)",
+          "oklch(60.714% 0.100699 84.662)",
+          "oklch(72.143% 0.100699 84.662)",
+          "oklch(83.571% 0.100699 84.662)",
+          "oklch(95.000% 0.100699 84.662)"
+        ]
+      },
+      "editorial-ochre": {
+        "role": "neutral",
+        "displayName": "Editorial Ochre",
+        "canonical": "#72612b",
+        "tonalRamp": [
+          "oklch(15.000% 0.075959 91.977)",
+          "oklch(26.429% 0.075959 91.977)",
+          "oklch(37.857% 0.075959 91.977)",
+          "oklch(49.286% 0.075959 91.977)",
+          "oklch(60.714% 0.075959 91.977)",
+          "oklch(72.143% 0.075959 91.977)",
+          "oklch(83.571% 0.075959 91.977)",
+          "oklch(95.000% 0.075959 91.977)"
+        ]
+      },
+      "eyebrow-muted": {
+        "role": "neutral",
+        "displayName": "Eyebrow Muted",
+        "canonical": "#696c61",
+        "tonalRamp": [
+          "oklch(15.000% 0.017230 119.406)",
+          "oklch(26.429% 0.017230 119.406)",
+          "oklch(37.857% 0.017230 119.406)",
+          "oklch(49.286% 0.017230 119.406)",
+          "oklch(60.714% 0.017230 119.406)",
+          "oklch(72.143% 0.017230 119.406)",
+          "oklch(83.571% 0.017230 119.406)",
+          "oklch(95.000% 0.017230 119.406)"
+        ]
+      },
+      "brand-hover-border": {
+        "role": "neutral",
+        "displayName": "Brand Hover Border",
+        "canonical": "#9b7b00",
+        "tonalRamp": [
+          "oklch(15.000% 0.121941 90.413)",
+          "oklch(26.429% 0.121941 90.413)",
+          "oklch(37.857% 0.121941 90.413)",
+          "oklch(49.286% 0.121941 90.413)",
+          "oklch(60.714% 0.121941 90.413)",
+          "oklch(72.143% 0.121941 90.413)",
+          "oklch(83.571% 0.121941 90.413)",
+          "oklch(95.000% 0.121941 90.413)"
+        ]
       }
     },
     "typographyMeta": {
@@ -439,9 +634,29 @@
     },
     "shadows": [
       {
+        "name": "finder",
+        "value": "0 16px 48px #20221f12",
+        "purpose": "Structural capture overlap."
+      },
+      {
+        "name": "embedded-enquiry",
+        "value": "0 16px 48px #20221f0a",
+        "purpose": "Desktop only; removed at 760px."
+      },
+      {
+        "name": "brand-hover",
+        "value": "0 5px 16px #20221f0f",
+        "purpose": "Brand hover."
+      },
+      {
+        "name": "menu",
+        "value": "0 12px 24px #20221f12",
+        "purpose": "Open mobile menu."
+      },
+      {
         "name": "sales-utility",
         "value": "0 5px 18px #20221f26",
-        "purpose": "Limited functional lift for the floating contact control."
+        "purpose": "Fixed contact control."
       }
     ],
     "motion": [
@@ -464,23 +679,36 @@
         "name": "reduced-motion",
         "value": "transition: none; scroll-behavior: auto",
         "purpose": "Remove public action transitions and smooth anchor scrolling when reduced motion is requested."
+      },
+      {
+        "name": "image-hover",
+        "value": "transform 160ms ease-out; scale(1.025)",
+        "purpose": "Fine hover pointers only and no reduced-motion preference."
       }
     ],
     "breakpoints": [
       {
-        "name": "navigation-compress",
-        "value": "1180px"
+        "name": "finder-gutters",
+        "value": "1439px"
       },
       {
-        "name": "navigation-menu-and-tablet",
+        "name": "header-menu-brand-grid",
+        "value": "1150px"
+      },
+      {
+        "name": "inner-tablet",
         "value": "1100px"
       },
       {
-        "name": "home-stack",
+        "name": "content-stack",
         "value": "760px"
       },
       {
-        "name": "request-stack-and-sales-header",
+        "name": "hero-brand-mobile",
+        "value": "650px"
+      },
+      {
+        "name": "request-sales-mobile",
         "value": "600px"
       }
     ]
@@ -538,9 +766,9 @@
       "name": "Public Navigation",
       "kind": "nav",
       "refersTo": "navigation-public",
-      "description": "Public link row; the compact preview shows the expanded mobile list treatment.",
-      "html": "<nav class=\"ds-public-nav\" aria-label=\"Main navigation\"><a href=\"#ds-find\">Find Your Part</a><a href=\"#ds-categories\">Categories</a><a href=\"#ds-supplier\">Supplier Registration</a><a href=\"#ds-contact\">Contact</a></nav>",
-      "css": ".ds-public-nav{display:flex;align-items:center;gap:20px;background:#faf9f5;color:#20221f;padding:18px 4%;border-bottom:1px solid #dedfd7;font:650 13px Manrope,sans-serif}.ds-public-nav a{padding:9px 0;min-height:44px;display:flex;align-items:center;color:inherit;text-decoration:none}.ds-public-nav a:hover{text-decoration:underline;text-underline-offset:5px}.ds-public-nav a:focus-visible{outline:3px solid #aa3023;outline-offset:4px}@media(max-width:1180px){.ds-public-nav{gap:16px;font-size:12px}}@media(max-width:1100px){.ds-public-nav{flex-direction:column;align-items:stretch;padding:18px 24px;border-bottom-color:#bfc2b6;font-size:14px;gap:3px}}"
+      "description": "Two-level white header: actual requirement GET entry and route navigation; menu below 1150px.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-main\"><strong>China Parts Shop</strong><span class=\"ds-entry\">Describe your requirement</span><a href=\"#enquiry\">Send Your Enquiry</a></div><div class=\"ds-links\"><a href=\"#home\" aria-current=\"page\">Home</a><a href=\"#find\">Find Your Part</a><a href=\"#categories\">Categories</a></div></nav>",
+      "css": ".ds-nav{background:#fff;color:#20221f;font:650 13px Manrope,sans-serif;border-bottom:1px solid #dedfd7}.ds-main{display:flex;gap:24px;align-items:center;min-height:88px;padding:16px 32px}.ds-entry{flex:1;background:#faf9f5;border:1px solid #d9dbd3;border-radius:4px;padding:14px;font-size:12px}.ds-main>a{background:#ffcc05;padding:12px 16px;border-radius:4px}.ds-links{display:flex;gap:40px;justify-content:center;border-top:1px solid #e9e9e3;min-height:48px}.ds-links a{display:flex;align-items:center;color:inherit}.ds-nav a:hover{text-decoration:underline;text-underline-offset:5px}.ds-nav a:focus-visible{outline:3px solid #aa3023;outline-offset:4px}.ds-links [aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px}"
     },
     {
       "name": "Part System Shortcut",
@@ -551,12 +779,12 @@
       "css": ".ds-part-system{background:transparent;border:1px solid #989c8e;padding:10px 14px;min-height:44px;border-radius:4px;color:#20221f;cursor:pointer;font:400 12px Manrope,sans-serif}.ds-part-system:focus-visible{outline:3px solid #aa3023;outline-offset:4px}"
     },
     {
-      "name": "Unavailable Attachments Container",
+      "name": "Raised Finder Panel",
       "kind": "card",
-      "refersTo": "container-attachment-unavailable",
-      "description": "A dashed recovery container without a card shadow.",
-      "html": "<section class=\"ds-attachment\"><h3>Photos &amp; parts lists</h3><p>Uploads are not available in this review build. Add the part number or describe the information in your enquiry. No file has been uploaded or scanned.</p><button type=\"button\">Add supporting information to the part description</button></section>",
-      "css": ".ds-attachment{color:var(--ink,#111315);font:400 16px/1.6 Manrope,Arial,sans-serif;border:1px dashed #979b8e;border-radius:8px;padding:24px;margin-bottom:24px}.ds-attachment h3{font-size:18px;font-weight:700;letter-spacing:-.04em;margin:0 0 12px}.ds-attachment p{line-height:1.7;font-size:14px}.ds-attachment button{padding:12px 18px;border:1px solid #63696b;background:#fff;border-radius:4px;font:700 16px/1.6 Manrope,Arial,sans-serif;cursor:pointer}.ds-attachment button:hover{background:#eee}.ds-attachment button:focus-visible{outline:3px solid var(--red,#b51621);outline-offset:4px}"
+      "refersTo": "finder-panel",
+      "description": "White structural requirement-capture panel.",
+      "html": "<section class=\"ds-finder\"><h2>Find Your Part</h2><p>Describe your requirement.</p><a href=\"#enquiry\">Send Your Enquiry</a></section>",
+      "css": ".ds-finder{background:#fff;color:#20221f;border:1px solid #e1e2db;border-radius:8px;padding:36px;box-shadow:0 16px 48px #20221f12;font:400 16px/1.7 Manrope,sans-serif}.ds-finder h2{font-size:38px;line-height:1.13;letter-spacing:-.035em}.ds-finder a{color:#20221f;background:#ffcc05;padding:14px 22px;border-radius:4px;display:inline-flex;font-size:14px;font-weight:750}.ds-finder a:hover{background:#eabc00}.ds-finder a:focus-visible{outline:3px solid #aa3023;outline-offset:4px}"
     },
     {
       "name": "Sales Utility",
@@ -568,46 +796,46 @@
     }
   ],
   "narrative": {
-    "northStar": "A sourcing desk organized around the visitor's requirement",
-    "overview": "The CPS world feels like a clear working desk: warm paper, ink charcoal, precise labels and a bright yellow action surface. Manrope gives the interface a plain, confident voice. The established red CPS mark remains an identity asset; red in the interface signals focus, identification or correction rather than competing with yellow actions.\n\nThe material character comes from illustrative industrial-yard, equipment, component-inspection and warehouse photography, flat tonal passages and visible rules. Generous section space sits beside compact, useful forms. The restored full-width industrial homepage hero uses a dark overlay and white headline with yellow emphasis; dedicated destinations extend the same world through split editorial introductions, image-led categories and readable guides. Related screens carry the same typography, restrained corners and border-led structure, with the yellow technical-help passage as a recognizable landmark. The chosen direction rejects page-wide hiding, endless brand marquees, parallax, form entrances and animated counters.",
+    "northStar": "The original industrial sourcing world",
+    "overview": "Photo-rich, substantial and practical: the preserved CPS logo, Manrope, yellow, charcoal and warm white anchor industrial scenes, technical imagery and actual requirement capture. White capture panels overlap darker photography. Circular brand disks, overlay mosaics, connected process markers and framed editorial cards restore physical presence while retaining readable, spacious layouts.\n\nThe owner's explicit restoration brief supersedes the earlier minimal flat-desk direction. Original demo commit `2d7e7ae4ec84f08a039babd9b8dc0315886d6330` is the visual anchor. Actual authority is the composite cascade in app/layout.tsx: globals, request, public, home, sourcing-pages, then restored-demo. The scoped final stylesheet is not a wholesale replacement. Frontmatter names reused actual literals semantically; it does not canonize every legacy value. Surface composition and evidence remain in VISUAL_RESTORATION_AUDIT.md and the surface brief.",
     "keyCharacteristics": [
-      "Warm paper and charcoal surfaces with confident yellow actions.",
-      "Clean Manrope hierarchy and legible, above-field labels.",
-      "Flat editorial sections, fine dividers and restrained corners.",
-      "Illustrative inspection imagery with visible context.",
-      "Immediate feedback and readable mobile task layouts."
+      "CPS identity and modern Manrope hierarchy.",
+      "Industrial photography and contained component imagery.",
+      "Raised capture panels and circular brand discovery.",
+      "Dark process, editorial, closing and footer passages.",
+      "Honest forms, mobile imagery and visible keyboard focus."
     ],
     "rules": [
       {
         "name": "The Action Yellow Rule",
-        "body": "Use CPS Yellow for public primary actions and Request Amber for the existing request variant; preserve their distinct source values.",
+        "body": "Keep public CPS Yellow and operational Request Amber distinct.",
         "section": "colors"
       },
       {
-        "name": "The Plain Heading Rule",
-        "body": "Keep active public headings in Manrope and let the heading lead the content; the customer-access correction removes its redundant above-heading brand label.",
-        "section": "typography"
+        "name": "The Notice Foreground Rule",
+        "body": "Pale notices inside dark panels explicitly use Ink Charcoal. The customer-panel request-mode foreground is #20221f; never inherit pale dark-panel supporting text into a pale notice.",
+        "section": "colors"
       },
       {
-        "name": "The Flat Desk Rule",
-        "body": "Use tonal passages and rules for content hierarchy; retain the Sales utility's limited lift instead of introducing a general card-shadow system.",
+        "name": "The Structural Lift Rule",
+        "body": "Raise capture and contact utilities deliberately; use photo and tonal layering for other content.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** preserve the CPS identity asset, Manrope hierarchy and yellow/charcoal/warm-paper world.",
-      "**Do** keep homepage CPS Yellow and request Request Amber as the distinct implemented action variants.",
-      "**Do** use above-field labels, visible focus outlines and adjacent error messages.",
-      "**Do** extend open, ruled and tonal containers before adding raised cards.",
-      "**Do** keep the mobile Sales utility in its clear header position and retain the contrasting backings for white brand artwork.",
-      "**Do** keep immediate pending/recovery feedback and show a success reference only after acknowledgment."
+      "**Do** preserve the original photo-rich CPS industrial identity and supplied logo.",
+      "**Do** use raised capture panels, circular discovery and varied dark/photo/yellow passages where appropriate.",
+      "**Do** retain enquiry prefill, operational amber and honest recovery states.",
+      "**Do** pair pale notices with explicit Ink Charcoal inside dark panels.",
+      "**Do** preserve mobile imagery, keyboard focus, reduced motion and clearances.",
+      "**Do** keep illustrative images and brand rights visibly tied to review provenance."
     ],
     "donts": [
-      "**Don't** bring legacy serif headings, mono eyebrows or commercial card styling into the active public world.",
-      "**Don't** add page-wide reveal hiding, endless marquees, parallax, form entrances or animated counters.",
-      "**Don't** make every content group a rounded, shadow-bearing card.",
-      "**Don't** cover labels, editable fields or illustrative captions with fixed controls.",
-      "**Don't** turn brand references or illustrative inspection imagery into a visual claim of authorization or available stock."
+      "**Don't** return to uniformly minimal text-and-rule sections.",
+      "**Don't** turn component imagery into stock, price, availability or authorization claims.",
+      "**Don't** hide content behind repeated reveals or automatic brand motion.",
+      "**Don't** bypass submission, upload, Auth or publication gates for visual completion.",
+      "**Don't** show success before acknowledged persistence."
     ]
   }
 }

@@ -7,6 +7,7 @@ import {
   ArticleLinks,
   ClosingCTA,
   pageMetadata,
+  SourcingImage,
 } from "../../../components/SourcingSite";
 import { categoryPages, findPartHref } from "../../../lib/sourcing-pages.mjs";
 import { salesHref } from "../../../lib/sourcing-config.mjs";
@@ -53,16 +54,22 @@ export default async function Category({
       </PageHero>
       <section className="home-section category-families">
         <h2>What we can help source.</h2>
-        <ul>
-          {c.families.map((f) => (
-            <li key={f}>
-              <h3>{f}</h3>
-              <p>
-                Share the part reference and equipment application for review.
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="category-context">
+          <SourcingImage
+            src="/parts-catalogue.png"
+            alt="Illustrative mechanical component families, not category stock"
+          />
+          <ul>
+            {c.families.map((f) => (
+              <li key={f}>
+                <h3>{f}</h3>
+                <p>
+                  Share the part reference and equipment application for review.
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
         <p className="section-note">
           Component families describe enquiry areas. Availability, compatibility
           and supply terms are confirmed for the specific requirement.
