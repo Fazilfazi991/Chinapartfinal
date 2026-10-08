@@ -1,6 +1,6 @@
 ---
 name: China Parts Shop
-description: A clear, practical sourcing desk in CPS yellow, charcoal and warm paper.
+description: The original photo-rich CPS industrial sourcing world, restored for actual requirement capture.
 colors:
   cps-yellow: "#ffcc05"
   cps-yellow-hover: "#eabc00"
@@ -28,18 +28,31 @@ colors:
   selection-yellow: "#ffdc52"
   sales-green: "#225c3c"
   sales-green-hover: "#18462c"
+  discovery-paper: "#f1f1eb"
+  component-paper: "#f3f3ee"
+  photo-ink: "#15181a"
+  closing-charcoal: "#292c26"
+  footer-charcoal: "#191c18"
+  restoration-border: "#e1e2db"
+  footer-divider: "#45483f"
+  photo-muted: "#e7e9e3"
+  hero-muted: "#eceee7"
+  technical-ochre: "#7b5b00"
+  editorial-ochre: "#72612b"
+  eyebrow-muted: "#696c61"
+  brand-hover-border: "#9b7b00"
 typography:
   display:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(42px, 4.7vw, 72px)"
+    fontSize: "clamp(48px, 5.4vw, 80px)"
     fontWeight: 700
-    lineHeight: 1.08
+    lineHeight: 1.06
     letterSpacing: "-0.035em"
   headline:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(30px, 3.1vw, 46px)"
-    fontWeight: 650
-    lineHeight: 1.15
+    fontSize: "clamp(34px, 3.5vw, 50px)"
+    fontWeight: 750
+    lineHeight: 1.13
     letterSpacing: "-0.035em"
   title:
     fontFamily: "Manrope, sans-serif"
@@ -83,6 +96,8 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
 rounded:
+  header-submit: "3px"
+  process-marker: "6px"
   control: "4px"
   utility: "8px"
   circle: "50%"
@@ -99,6 +114,8 @@ spacing:
   desktop-gutter: "48px"
   tablet-section: "56px"
   desktop-section: "76px"
+  finder-inset: "36px"
+  composition-gap: "64px"
 components:
   button-primary:
     backgroundColor: "{colors.cps-yellow}"
@@ -144,10 +161,10 @@ components:
     padding: "{spacing.control-inset}"
     width: "100%"
   navigation-public:
-    backgroundColor: "{colors.warm-paper}"
+    backgroundColor: "{colors.white}"
     textColor: "{colors.ink-charcoal}"
     typography: "{typography.navigation}"
-    padding: "18px 4%"
+    padding: "16px 32px"
   chip-part-system:
     backgroundColor: "transparent"
     textColor: "{colors.ink-charcoal}"
@@ -163,150 +180,112 @@ components:
     padding: "14px 18px"
   control-sales-hover:
     backgroundColor: "{colors.sales-green-hover}"
+  finder-panel:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink-charcoal}"
+    rounded: "{rounded.utility}"
+    padding: "{spacing.finder-inset}"
 ---
 
 # Design System: China Parts Shop
 
 ## Overview
 
-**Creative North Star: "A sourcing desk organized around the visitor's requirement"**
+**Creative North Star: "The original industrial sourcing world"**
 
-The CPS world feels like a clear working desk: warm paper, ink charcoal, precise labels and a bright yellow action surface. Manrope gives the interface a plain, confident voice. The established red CPS mark remains an identity asset; red in the interface signals focus, identification or correction rather than competing with yellow actions.
+Photo-rich, substantial and practical: the preserved CPS logo, Manrope, yellow, charcoal and warm white anchor industrial scenes, technical imagery and actual requirement capture. White capture panels overlap darker photography. Circular brand disks, overlay mosaics, connected process markers and framed editorial cards restore physical presence while retaining readable, spacious layouts.
 
-The material character comes from machined-metal inspection photography, flat tonal passages and visible rules. Generous section space sits beside compact, useful forms. An asymmetric editorial image and yellow action bar give the world its recognizable signature; related screens carry the same typography, restrained corners and border-led structure. The chosen direction rejects page-wide hiding, endless brand marquees, parallax, form entrances and animated counters.
+The owner's explicit restoration brief supersedes the earlier minimal flat-desk direction. Original demo commit `2d7e7ae4ec84f08a039babd9b8dc0315886d6330` is the visual anchor. Actual authority is the composite cascade in app/layout.tsx: globals, request, public, home, sourcing-pages, then restored-demo. The scoped final stylesheet is not a wholesale replacement. Frontmatter names reused actual literals semantically; it does not canonize every legacy value. Surface composition and evidence remain in VISUAL_RESTORATION_AUDIT.md and the surface brief.
 
 **Key Characteristics:**
-- Warm paper and charcoal surfaces with confident yellow actions.
-- Clean Manrope hierarchy and legible, above-field labels.
-- Flat editorial sections, fine dividers and restrained corners.
-- Illustrative inspection imagery with visible context.
-- Immediate feedback and readable mobile task layouts.
+- CPS identity and modern Manrope hierarchy.
+- Industrial photography and contained component imagery.
+- Raised capture panels and circular brand discovery.
+- Dark process, editorial, closing and footer passages.
+- Honest forms, mobile imagery and visible keyboard focus.
 
-This is a record of the final implemented review world, extracted from `app/home.css`, `app/public.css`, `app/request/request.css`, `app/globals.css`, `app/fonts.css`, `app/layout.tsx`, `app/page.tsx` and the shared public/form components. The frontmatter records reused literal values; its spacing names describe observed roles, not an existing CSS-variable scale. The finish review closed three specified corrections. Neither that disposition nor this document approves future production behavior.
+Finish disposition: **ship to owner review**, with the scoped pale-notice foreground issue resolved. This is the implemented review system, not client approval or production authorization. Brand lists, logo rights and imagery remain pending client approval and provenance/licensing review. Illustrative imagery does not establish stock, brand authorization or owned facilities. No generated visual concept replaces the original demo.
 
 ## Colors
 
-The palette combines workshop yellow, warm white and olive-tinted charcoal, with quieter amber and slate variants inside request forms. Sidecar tonal strips are synthesized OKLCH display aids; they do not define additional implementation colors.
-
 ### Primary
-- **CPS Yellow** (`cps-yellow`): homepage primary actions, connected process markers and the technical-help landmark; **CPS Yellow Hover** provides action feedback.
-- **Request Amber** (`request-amber`): the existing enquiry and supplier submission treatment; its warmer hover is preserved as a separate request variant.
+CPS Yellow drives public actions, process markers and technical passages. Its hover provides feedback. Request Amber and its hover remain the operational enquiry/supplier variant.
 
 ### Secondary
-- **Sales Green** (`sales-green`): the single WhatsApp Sales utility, with a darker hover. Its role is human contact rather than the page's main enquiry action.
-- **Focus Red / Request Red** (`focus-red`, `request-red`): public focus outlines and request progress/focus/checkbox accents. **Error Red** marks invalid fields and their adjacent messages. Preserve the red CPS logo asset without inferring a new UI color from its pixels.
+Sales Green belongs to the single WhatsApp utility. Focus Red and Request Red distinguish public and operational focus/progress; Error Red accompanies failed validation. Technical Ochre and Editorial Ochre make small light-surface accents readable. The supplied CPS logo remains the identity source.
 
 ### Neutral
-- **Ink Charcoal / Request Ink**: primary text and dark passages; request pages retain their darker ink.
-- **Warm Paper / Request Paper**: public and task-page backgrounds. **Capture Surface** separates the requirement panel and contact area without a raised card.
-- **White**: editable fields and text on dark actions.
-- **Muted Olive / Muted Slate**: supporting public and request copy. **Dark Muted** keeps supporting text readable on charcoal.
-- **Divider / Request Divider**: list, rail and review-section rules. **Field Border / Request Field Border** distinguish editable surfaces.
-- **Outline Hover / Ink Hover**: quiet state surfaces for outline and dark actions.
-- **Warning Paper**: availability, mode and recovery notices. **Selection Yellow** is the final public/request selection background after the public stylesheet override.
+Warm Paper is the public base. Discovery Paper frames brands, component families and identification; White contains capture cards and fields. Component Paper backs contained technical imagery. Ink Charcoal drives process, editorial and login panels; Photo Ink protects rich introductions, with Closing Charcoal and Footer Charcoal deepening the final passages. Dark Muted, Photo Muted and Hero Muted are real supporting foreground variants. Restoration Border frames finder/discovery; Footer Divider separates dark groups. Existing request ink, paper, dividers, borders and Warning Paper keep their operational meaning. Capture Surface remains in inherited utility treatments, not the restored finder.
 
-**The Action Yellow Rule.** Use CPS Yellow for public primary actions and Request Amber for the existing request variant; preserve their distinct source values.
+**The Action Yellow Rule.** Keep public CPS Yellow and operational Request Amber distinct.
+
+**The Notice Foreground Rule.** Pale notices inside dark panels explicitly use Ink Charcoal. The customer-panel request-mode foreground is #20221f; never inherit pale dark-panel supporting text into a pale notice.
+
+Sidecar tonal strips are synthesized display aids, not additional shipping palette values. Detector findings for restored colors, type and radius represent the explicitly requested system change, not a reason to revert to the old minimal document.
 
 ## Typography
 
-**Display Font:** Manrope, with sans-serif fallback on the homepage.
-**Body Font:** Manrope, with Arial and sans-serif fallback globally and on request pages.
+Manrope is active, with sans-serif public and Arial/sans-serif request fallback. Local weights 400–800 use font-display swap. Loaded legacy mono and serif faces do not define active public headings.
 
-**Character:** One clean sans-serif family carries the active public world. The local Manrope files support weights from 400 to 800 with `font-display: swap`. DM Mono and Playfair Display remain loaded for legacy styles; they are not the active public heading or label treatment.
+Frontmatter display and headline roles now represent the restored homepage. Display inherits line-height 1.06 from sourcing-pages; at 650px it is 44px/1.08. Restored section headlines use weight 750 and line-height 1.13, becoming 34px at 760px. Inner PageHero is clamp(42px, 4.5vw, 66px)/1.09, becoming 40px at 760px. Finder headings are 38px desktop/34px mobile; photo categories use 22px/20px. These scoped variants coexist with inherited base styles.
 
-### Hierarchy
-- **Display:** the frontmatter's `display` role drives the homepage promise. At the 1100 px breakpoint it becomes 48 px; at 760 px it becomes 44 px with line height 1.1. Headings balance wrapping.
-- **Headline:** the `headline` role drives section headings. At 760 px these become 31 px. Inline section headings have a desktop 32 px variant; the contact heading has a desktop 34 px variant.
-- **Title:** `title` is the standard homepage subsection heading. The process uses a denser 18 px variant and guidance links a 23 px variant. Default heading weight is inherited where the component does not override it.
-- **Body:** `body` is the homepage baseline. The hero introduction is 18 px on desktop and 16 px on mobile; supporting rows and resources use 14 px. Hero, section and form-support copy use observed limits of 48 ch, 56 ch and 65 ch respectively; guidance prose permits 72 ch.
-- **Label:** `label` is the homepage above-field treatment. Request labels inherit the 16 px task baseline with weight 700; optional request annotations are 13 px at weight 400. Fine notes range from 11 to 13 px.
-- **Navigation / Action:** the frontmatter records the 13 px navigation and 14 px action roles. Public brand type is 14 px with tracking 0.02 em; its second line is weight 800.
-- **Request headings:** `request-headline` and `request-title` preserve the task-page hierarchy; supplier group titles use a 22 px variant.
-
-**The Plain Heading Rule.** Keep active public headings in Manrope and let the heading lead the content; the customer-access correction removes its redundant above-heading brand label.
+Body is 16px/1.7, with 12–14px support and 18px hero introductions reducing to 16px. Restoration eyebrows are 11px/750/1.5 with 0.1em uppercase tracking; article labels use 10px/0.07em. Guide prose is 17px/1.85, reducing to 16px. Request headings and labels retain operational typography. Headings inherit -0.035em tracking and balanced wrapping; labels stay above controls.
 
 ## Layout
 
-The public world alternates open editorial sections with full-width tonal passages. The hero uses a maximum width of 1440 px, a 1.05:1 split, 44 px gap and padding of 48 px vertically at the top, 5% horizontally and 40 px at the bottom. Its inspection frame is 470 px tall, with the image focused at 65% center. Content sections cap at 1280 px with 76 px by 48 px padding; full-width passages align to an inner 1184 px measure through calculated gutters. Two-column section introductions use a 60 px gap.
+Public sections cap at 1440px with 76px/32px padding. Full-width bands align to max(32px, calc((100vw - 1376px) / 2)); composition gaps are 48–64px and card grids 24px. At 760px sections use 48px/22px and paired layouts stack.
 
-At 1100 px, public sections use 32 px gutters and 56 px vertical section padding; the hero uses 40 px by 32 px padding and a 28 px gap. At 760 px, the hero and broad paired sections stack. Standard sections use 44 px by 22 px padding, while technical/contact passages use 40 px by 22 px. Actions stretch vertically and the image becomes 250 px tall. Category rows shift from three columns to two, resources from three to one, and the four-step process becomes a connected vertical sequence. The brand rail remains manually scrollable with proximity snapping; item widths fall from 176 px to 150 px.
+The two-level sticky white header has an 88px main row and 48px navigation. Its requirement GET control carries actual description context to Find Your Part, never inventory search. Below 1150px secondary actions collapse into a 44px menu and the main row becomes 76px. Mobile insets are 10px/22px below 650px. The open menu remains white, immediate and directly below the header.
 
-Homepage fields use two columns with gaps of 22 px vertically and 28 px horizontally, then one column with a 20 px gap at 760 px. Request and supplier pages share a 900 px shell, padded 40 px by 24 px with 64 px below, and a two-column field grid with a 24 px gap. At 600 px the shell becomes 24 px by 16 px with 48 px below, fields stack, and review key/value rows become one column. Request pages reserve 100 px below their content. Public anchored sections use a 100 px scroll margin.
+Homepage hero minimum height is 648px; content inset is 88px/32px/100px. At 650px it becomes 700px with 38px/22px/230px padding and the inherited mobile industrial scene. Finder overlaps by 44px, caps at 1376px, and uses 36px padding with a 0.7:1.3 split. At 760px it overlaps by 24px, uses 24px inset and stacks. Its actual fields and prefill remain operational.
 
-The header compresses at 1180 px, changes to a menu at 1100 px, and keeps 44 px navigation/menu targets. On screens up to 600 px, the sole Sales utility is a 48 px icon control at top 14 px and right 76 px, between the brand and menu; it does not occupy the form or inspection caption area. Staff supplier lists and details also stack at 1100 px, with long identifiers allowed to wrap.
+Brand discovery uses five columns, three below 1150px. Circular disks measure 150px desktop, 110px below 760px and 86px below 650px. Category preview uses four columns with wide first/last panels, two below 1150px and one below 650px. Overlay panels are 280–290px tall. Component/audience grids move from three columns to one at 760px; process turns vertical and editorial cards stack.
 
-The observed spacing is a practical rhythm rather than a rigid single-step scale: repeated small gaps sit around 8â€“16 px, controls around 12â€“24 px, content gaps around 28â€“48 px, and desktop section space at 76 px. Preserve the actual component relationships when extending the system.
+Inner PageHero is a 510px dark photo-backed passage with a directional overlay and 700px copy limit. At 1100px it becomes 480px with 64px/32px insets. At 760px copy precedes a 280px image with dark transition overlay and stacked actions. Articles retain a 780px reading column and 480px supporting image (290px mobile). Supplier registration uses process aside and real form, then stacks. Customer access pairs industrial story and secure dark gated panel.
+
+Operational shells, field/review grids and security gates remain governed by request CSS and components. The single Sales utility moves to top 14px/right 76px at 600px with a 48px icon target; mobile footer reserves 96px bottom padding. Preserve narrow-screen wrapping, imagery and fixed-control clearances.
 
 ## Elevation & Depth
 
-Depth is mostly tonal and border-led. The header explicitly removes box shadow, although it retains the global header's 12 px backdrop blur. Warm paper, the slightly darker capture surface, charcoal and yellow create clear landmarks without enclosing every section in a raised card. Photography is clipped to a restrained frame. The floating Sales utility is the active public world's limited shadow-bearing exception.
+Depth combines photo overlays, tonal bands and selective structural lift. Finder is intentionally raised; ordinary cards remain shadow-free. Header has no resting shadow.
 
-### Shadow Vocabulary
-- **Sales utility:** `0 5px 18px #20221f26`; a small functional lift that separates the fixed contact control from content.
+- Finder: 0 16px 48px #20221f12.
+- Embedded enquiry: 0 16px 48px #20221f0a; removed at 760px.
+- Brand disk hover: 0 5px 16px #20221f0f with Brand Hover Border.
+- Open mobile menu: 0 12px 24px #20221f12.
+- Sales utility: 0 5px 18px #20221f26.
 
-**The Flat Desk Rule.** Use tonal passages and rules for content hierarchy; retain the Sales utility's limited lift instead of introducing a general card-shadow system.
+**The Structural Lift Rule.** Raise capture and contact utilities deliberately; use photo and tonal layering for other content.
 
 ## Shapes
 
-Most controls and the editorial photo frame have gently eased corners (`rounded.control`). The Sales utility and unavailable-attachment panel use the slightly rounder utility shape (`rounded.utility`). Circular 36 px process markers use `rounded.circle`; circles communicate numbered progression rather than general container styling.
-
-Fields, menu controls, outline actions and part-system chips use visible one-pixel borders. Invalid request fields strengthen to a two-pixel error stroke. Resource links use a two-pixel ink top rule; categories and brand rails use fine divider rules. The unavailable attachment panel uses a dashed border to distinguish a non-editable recovery surface. Preserve supplied brand geometry; white JAC Motors and Chery artwork receives a charcoal backing with 8 px inset and control-radius corners.
+Controls/photo cards use 4px corners; finder, discovery, embedded forms and customer panel use 8px. Header submit uses 3px. Process markers are 46px squares with 6px corners; supplier markers are 36px with 4px corners. Brand disks are circles. Preserve contained cutouts and supplied logo geometry; white brand artwork needs charcoal backing. Cover photography uses readable overlays. Fields have visible borders; errors strengthen the stroke and attachment-unavailable surfaces retain dashed outlines.
 
 ## Components
 
-### Buttons
+Public primary/outline/dark buttons retain 14px/22px padding, 50px minimum height and 14px/750 text. Primary hover darkens yellow; dark hover uses Ink Hover. Dark heroes use white-outline variants. Public focus is 3px Focus Red offset 4px. Request buttons retain 12px/18px padding, amber, weight 700, explicit disabled states and Request Red focus. Chips remain bordered 10px/14px controls with 44px targets and no invented persistent selection.
 
-Confident, compact actions with clear text and restrained state feedback.
+Public fields are white with Field Border, 12px padding and 48px minimum height; focus is 2px Focus Red offset 2px. Request/supplier fields keep their border, validation and entered values during failure. Reference text wraps with tabular numerals. Success appears only after persistence acknowledges a business reference. Vendor ID is a business reference; customer access remains gated Auth, never reference-only access.
 
-- **Public primary / outline / dark:** share the frontmatter's control radius, 14 px by 22 px padding, 16 px icon gap and 50 px minimum height. Primary is yellow/ink; outline is transparent/ink with a `#96988f` stroke; dark is charcoal/white.
-- **Hover / press:** public actions change background over 160 ms `ease-out`; a press scales to 0.98 over 120 ms `ease-out`. Public focus is a three-pixel Focus Red outline with four-pixel offset.
-- **Request actions:** use 12 px by 18 px padding, weight 700, the inherited 16 px task font, one-pixel border and the same control radius. The primary border is `#856005`; generic buttons are white with a `#63696b` border and `#eee` hover. Disabled buttons use opacity 0.55 and a not-allowed cursor. Request focus is a three-pixel Request Red outline with four-pixel offset. No request transition or press transform is defined.
-- **Motion:** reduced motion removes the public action transitions and changes anchor scrolling to automatic; the active scale still applies immediately. Menus and pending states appear immediately. Smooth anchor scrolling applies otherwise. Existing legacy reveal selectors do not define the current public components.
+Finder combines technical imagery with actual description, OEM/part number, brand, category and model context. Category mosaic primary clicks prefill enquiry; separate detail links retain real pages. Circular brand links preserve brand prefill. Component families illustrate enquiry shortcuts without inventory. Dark connected process/editorial passages, image audience panels, yellow technical landmark, warehouse supplier story, substantial dark CTA and grouped footer are the rich reusable vocabulary.
 
-### Chips
+Articles combine narrow reading with a dark/yellow explanatory callout. Supplier pages retain process and real registration form. Customer panel uses white labels/Dark Muted copy, with explicit Ink Charcoal on its pale request-mode notice. Navigation retains aria-current underline, hover underline, Escape close and focus return.
 
-Part-system shortcuts feel like small tools rather than decorative badges. They are transparent with a `#989c8e` border, control-radius corners, 10 px by 14 px padding and a 44 px minimum height. They append requirement information; no persistent selected-chip treatment is implemented. They receive the common public button focus outline and have no bespoke hover or press effect.
-
-### Cards / Containers
-
-The current public system favors open containers and ruled rows. The light requirement panel is a full-width Capture Surface passage, not a shadow card. The unavailable-attachment container uses utility-radius corners, a `#979b8e` dashed border and 24 px inset. Warning notices use Warning Paper and 16 px inset; the mode banner uses 12 px by 16 px. Review sections use 24 px vertical space and a divider, without a card shadow.
-
-### Inputs / Fields
-
-Border-led, visibly editable fields with labels above the control.
-
-- **Homepage fields:** white/ink, Field Border, 15 px font, 12 px padding and 48 px minimum height. Placeholder text uses `#62665b`. Their focus outline is two-pixel Focus Red with two-pixel offset; the homepage caret is `#b92f20`.
-- **Request and supplier fields:** white surfaces, Request Field Border, inherited request typography and 12 px padding. The task container uses Request Ink; editable fields do not declare a separate text-color override. The final public override makes text-field carets Focus Red. Invalid fields use Error Red and adjacent 14 px error text; focus uses the request outline described above.
-- **Textareas / references:** homepage textareas resize vertically; supplier textareas have a 100 px minimum height. References use tabular numerals and wrap rather than clipping. Labels and error descriptions stay associated with their controls.
-- **State presentation:** pending text changes immediately and blocked actions are visibly disabled. Failure/recovery copy appears in notices while entered values remain visible; acknowledged success replaces the form with a focused heading and reference. Do not add an optimistic success badge.
-
-### Navigation
-
-The public navigation is a warm-paper sticky header, with 18 px by 4% inset, a fine `#dedfd7` bottom border and no shadow. The brand combines the actual CPS image with stacked text. Desktop links use the frontmatter navigation role, a 20 px gap and 44 px minimum height; hover underlines have a five-pixel offset. There is no persistent active-link color treatment in the current header.
-
-At 1180 px, link type becomes 12 px and gaps become 16 px. At 1100 px, the bordered 44 px menu button opens an absolute, full-width warm-paper list directly below the header, with 18 px by 24 px inset, 14 px type and three-pixel gaps. It exposes expanded state and a navigation relationship; the icon changes between menu and close, and choosing a link closes the list. Public focus remains visible.
-
-### Sales Utility
-
-One green contact control carries a 22 px message icon, 12 px bold Manrope label, utility-radius corners, 48 px minimum height and the limited shadow from Elevation & Depth. Desktop placement is bottom 20 px/right 22 px; the 1100 px variant uses 16 px offsets and 12 px by 14 px inset. At 600 px it moves into the header area with the position documented in Layout and visually hides its label while retaining an accessible name. It darkens on hover and keeps the public focus outline.
-
-### Connected Process / Brand Rail
-
-Numbered yellow circles connect through fine `#b8bbaf` rules. Desktop markers sit above four columns; mobile rules turn vertically beside stacked copy, with process icons hidden. The brand rail uses contained 120 px by 48 px supplied marks, generous clickable rows and small text/arrow labels. It has explicit charcoal backing for the white marks, a quiet Capture Surface hover and a thin scrollbar; manual touch and keyboard interaction supplies movement.
+Image hover is scale(1.025) over 160ms ease-out, only on fine hover pointers with no reduced-motion preference. Public button background changes use 160ms, press scale(0.98) uses 120ms. Reduced motion removes transitions and smooth scrolling; inherited press scale applies immediately. Menus and operational feedback appear immediately. No entrance hiding, marquees or parallax.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** preserve the CPS identity asset, Manrope hierarchy and yellow/charcoal/warm-paper world.
-- **Do** keep homepage CPS Yellow and request Request Amber as the distinct implemented action variants.
-- **Do** use above-field labels, visible focus outlines and adjacent error messages.
-- **Do** extend open, ruled and tonal containers before adding raised cards.
-- **Do** keep the mobile Sales utility in its clear header position and retain the contrasting backings for white brand artwork.
-- **Do** keep immediate pending/recovery feedback and show a success reference only after acknowledgment.
+- **Do** preserve the original photo-rich CPS industrial identity and supplied logo.
+- **Do** use raised capture panels, circular discovery and varied dark/photo/yellow passages where appropriate.
+- **Do** retain enquiry prefill, operational amber and honest recovery states.
+- **Do** pair pale notices with explicit Ink Charcoal inside dark panels.
+- **Do** preserve mobile imagery, keyboard focus, reduced motion and clearances.
+- **Do** keep illustrative images and brand rights visibly tied to review provenance.
 
 ### Don't:
-- **Don't** bring legacy serif headings, mono eyebrows or commercial card styling into the active public world.
-- **Don't** add page-wide reveal hiding, endless marquees, parallax, form entrances or animated counters.
-- **Don't** make every content group a rounded, shadow-bearing card.
-- **Don't** cover labels, editable fields or illustrative captions with fixed controls.
-- **Don't** turn brand references or illustrative inspection imagery into a visual claim of authorization or available stock.
+- **Don't** return to uniformly minimal text-and-rule sections.
+- **Don't** turn component imagery into stock, price, availability or authorization claims.
+- **Don't** hide content behind repeated reveals or automatic brand motion.
+- **Don't** bypass submission, upload, Auth or publication gates for visual completion.
+- **Don't** show success before acknowledged persistence.

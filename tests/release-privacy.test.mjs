@@ -11,11 +11,17 @@ test('release privacy cleanup strips generated records and manifests without tou
     await writeFile(join(root,'.local-data','private.json'),'synthetic');
     await mkdir(join(root,'.next','standalone','.local-data'),{recursive:true});
     await writeFile(join(root,'.next','standalone','.local-data','private.json'),'synthetic');
-    await writeFile(join(root,'.next','route.nft.json'),JSON.stringify({version:1,files:['../.local-data/private.json','../lib/needed.mjs']}));
-    const result=await sanitizeRelease(root);assert.equal(result.removedReferences,1);
+    await mkdir(join(root,'.tmp','reference-snapshot'),{recursive:true});
+    await writeFile(join(root,'.tmp','reference-snapshot','source.ts'),'synthetic archived reference');
+    await mkdir(join(root,'.next','standalone','.tmp','reference-snapshot'),{recursive:true});
+    await writeFile(join(root,'.next','standalone','.tmp','reference-snapshot','source.ts'),'synthetic archived reference');
+    await writeFile(join(root,'.next','route.nft.json'),JSON.stringify({version:1,files:['../.local-data/private.json','../.tmp/reference-snapshot/source.ts','../lib/needed.mjs']}));
+    const result=await sanitizeRelease(root);assert.equal(result.removedReferences,2);
     assert.deepEqual(JSON.parse(await readFile(join(root,'.next','route.nft.json'),'utf8')).files,['../lib/needed.mjs']);
     assert.equal(await readFile(join(root,'.local-data','private.json'),'utf8'),'synthetic');
     await assert.rejects(access(join(root,'.next','standalone','.local-data')));
+    await assert.rejects(access(join(root,'.next','standalone','.tmp')));
+    assert.equal(await readFile(join(root,'.tmp','reference-snapshot','source.ts'),'utf8'),'synthetic archived reference');
   } finally {
     // mkdtemp created this exact synthetic fixture beneath OS temp.
     if(!root.startsWith(join(tmpdir(),'cps-release-fixture-')))throw new Error('Unexpected fixture path');

@@ -1,5 +1,9 @@
 import Link from "next/link";
-import PublicHeader from "../../components/PublicHeader";
+import {
+  SiteShell,
+  SourcingImage,
+  pageMetadata,
+} from "../../components/SourcingSite";
 import { authConfigured } from "../../lib/supabase/server";
 import {
   customerAuthEnabled,
@@ -7,6 +11,11 @@ import {
 } from "../../lib/customer-auth.mjs";
 import { customerLogin } from "./actions";
 export const dynamic = "force-dynamic";
+export const metadata = pageMetadata(
+  "Customer Login",
+  "Secure access for approved customer company accounts.",
+  "/customer-access",
+);
 export default async function CustomerAccess({
   searchParams,
 }: {
@@ -15,16 +24,34 @@ export default async function CustomerAccess({
   const params = await searchParams;
   const enabled = customerAuthEnabled() && authConfigured();
   return (
-    <>
-      <PublicHeader />
-      <main className="request-page">
-        <section className="request-shell">
-          <h1>Customer enquiry access</h1>
+    <SiteShell>
+      <section className="customer-access-layout">
+        <div className="customer-access-story">
+          <h1>
+            Your enquiries.
+            <br />
+            Your company access.
+          </h1>
+          <p>
+            Approved company accounts provide secure access to the customer
+            enquiry workspace when the portal is activated.
+          </p>
+          <SourcingImage
+            src="/sourcing/workshop.webp"
+            alt="Illustrative component and workshop context"
+          />
+          <p className="section-note">
+            Enquiry and status visibility follow account permissions. A request
+            reference alone never grants access.
+          </p>
+        </div>
+        <div className="customer-access-panel">
+          <h2>Customer enquiry access</h2>
           {enabled ? (
             <>
               <p>
-                Sign in with your approved company account. Account invitations
-                are managed by the team; public registration is unavailable.
+                Sign in with your approved company account. Invitations are
+                managed by the team; public registration is unavailable.
               </p>
               <form action={customerLogin} className="request-fields">
                 <div>
@@ -55,7 +82,7 @@ export default async function CustomerAccess({
                     contact the team.
                   </p>
                 )}
-                <button type="submit" className="request-primary">
+                <button type="submit" className="cps-action">
                   Sign in
                 </button>
               </form>
@@ -67,10 +94,12 @@ export default async function CustomerAccess({
             </>
           ) : (
             <>
+              <p className="request-mode">
+                Online enquiry tracking is not available yet.
+              </p>
               <p>
-                Online enquiry tracking is not available yet. Keep your request
-                reference and use the company&apos;s approved support channel
-                for an update.
+                Keep your request reference and use the company’s approved
+                support channel for an update.
               </p>
               <p>
                 No customer information is exposed through a public reference
@@ -79,8 +108,8 @@ export default async function CustomerAccess({
             </>
           )}
           <Link href="/request">Send Your Enquiry</Link>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </SiteShell>
   );
 }

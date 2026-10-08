@@ -6,23 +6,24 @@ import {
   enquiryHref,
   subcategories,
 } from "../lib/sourcing-config.mjs";
-export default function FindPart() {
+export default function FindPart({destination="/request",initialData={}}:{destination?:"/request"|"/find-your-part";initialData?:Record<string,string>}) {
   const [data, setData] = useState({
     description: "",
     oem: "",
     brand: "",
     category: "",
     model: "",
+    ...initialData,
   });
   const update = (key: string, value: string) =>
     setData((old) => ({ ...old, [key]: value }));
   return (
     <form
       className="find-part-form"
-      action="/request"
+      action={destination}
       onSubmit={(e) => {
         e.preventDefault();
-        window.location.assign(enquiryHref(data));
+        window.location.assign(enquiryHref(data).replace(/^\/request/,destination));
       }}
     >
       <div className="find-fields">

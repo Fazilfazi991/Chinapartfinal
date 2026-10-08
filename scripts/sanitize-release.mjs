@@ -4,7 +4,7 @@
 import {readdir,readFile,writeFile,lstat,rm} from 'node:fs/promises';
 import {resolve,join,dirname,basename,sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
-const privateNames=['.local-data','.test-pg','reference-demo','evidence','.next-provider-test','.tools','deliverables','.impeccable'];
+const privateNames=['.local-data','.test-pg','reference-demo','evidence','.next-provider-test','.tools','deliverables','.impeccable','.tmp'];
 const inside=(parent,child)=>child===parent||child.startsWith(parent+sep);
 const environmentFile=path=>{const name=basename(path);return name==='.env'||name.startsWith('.env.')&&name!=='.env.example';};
 export async function sanitizeRelease(projectRoot) {

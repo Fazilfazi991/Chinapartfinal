@@ -20,6 +20,9 @@ reference-demo/
 deliverables/
 evidence/
 .impeccable/surfaces/
+.impeccable/review/
+.impeccable/source-images.mjs
+.impeccable/multipage-direction.md
 playwright-report/
 test-results/
 .cache/

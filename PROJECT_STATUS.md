@@ -1,5 +1,7 @@
 # China Parts Final project status
 
+Current 8 October review: the original demo's visual direction has been restored selectively on `codex/restore-original-demo-visuals`. The current Supabase, RLS, RFQ, vendor and private Storage architecture is preserved. Read [VISUAL_RESTORATION_REPORT.md](VISUAL_RESTORATION_REPORT.md) for the current A–L source report and [VISUAL_RESTORATION_AUDIT.md](VISUAL_RESTORATION_AUDIT.md) for rendered comparisons. Only a protected Preview is authorized; homepage visual approval is required before merging to `main`, which triggers automatic Production deployment. The historical main-push authorization below does not apply to this restoration.
+
 Latest client feedback: the enquiry-first redesign and separate private supplier workflow are implemented. Read [CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md](CLIENT_FEEDBACK_IMPLEMENTATION_2026-10-07.md) for the current A–P report, review categories/brands, verification evidence and remaining client data. The dedicated project now has eight migrations and 27 RLS-enabled tables. The activation milestone below is historical; its original seven migrations and provider architecture were preserved. Public supplier/RFQ ingestion, uploads, catalogue and production deployment remain closed by default.
 
 ## Historical Supabase activation milestone
