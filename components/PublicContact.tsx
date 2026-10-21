@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 import { salesHref } from "../lib/sourcing-config.mjs";
 export default function PublicContact() {
   const path = usePathname();
-  if (/^\/(?:staff|workspace|preview|api|auth)(?:\/|$)/.test(path)) return null;
+  if (path === "/" || /^\/(?:staff|workspace|preview|api|auth)(?:\/|$)/.test(path)) return null;
   return (
     <a
       className="public-whatsapp"

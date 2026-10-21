@@ -1,0 +1,62 @@
+.page {
+  --launch-ink: #20221f;
+  --launch-yellow: #ffcc05;
+  --launch-paper: #faf9f5;
+  min-height: 100svh;
+  padding: 40px clamp(24px, 6vw, 96px) 28px;
+  background: var(--launch-ink);
+  color: var(--launch-paper);
+  display: flex;
+  flex-direction: column;
+  border-top: 6px solid var(--launch-yellow);
+}
+.header {
+  position: static;
+  height: auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+.header img { flex: none; object-fit: contain; }
+.brand { font-size: 14px; line-height: 1.5; letter-spacing: .02em; }
+.brand strong { display: block; font-weight: 800; }
+.content {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 80px 0;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+.introduction h1 {
+  margin: 0;
+  font-size: clamp(64px, 7.5vw, 108px);
+  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+.introduction h1 span { display: block; color: var(--launch-yellow); }
+.introduction > p { margin: 28px 0 0; color: #d3d6cd; font-size: 18px; line-height: 1.7; }
+.contact { padding: 36px; background: var(--launch-paper); color: var(--launch-ink); border-radius: 8px; }
+.contact h2 { margin: 0 0 14px; font-size: 24px; line-height: 1.3; letter-spacing: -.02em; }
+.contact > p { margin: 0; font-size: 15px; line-height: 1.7; }
+.contact .number { margin: 28px 0; font-size: clamp(22px, 2.5vw, 30px); font-weight: 750; line-height: 1.4; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.whatsapp { min-height: 52px; padding: 14px 18px; display: flex; justify-content: center; align-items: center; gap: 12px; background: var(--launch-yellow); color: var(--launch-ink); border-radius: 4px; font-size: 15px; font-weight: 750; }
+.whatsapp > svg:last-child { margin-left: auto; }
+.whatsapp:hover { background: #eabc00; }
+.whatsapp:focus-visible { outline: 3px solid #aa3023; outline-offset: 5px; }
+.footer { margin: 0; padding: 24px 0 0; border-top: 1px solid #45483f; background: transparent; color: #d3d6cd; font-size: 12px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .page { padding: 28px 24px 24px; }
+  .content { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; }
+  .introduction h1 { font-size: clamp(64px, 12vw, 88px); }
+  .introduction > p { margin-top: 20px; font-size: 16px; }
+  .contact { padding: 28px; max-width: 480px; }
+  .contact .number { margin: 24px 0; font-size: 26px; }
+}
