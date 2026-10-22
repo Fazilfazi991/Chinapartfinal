@@ -43,10 +43,15 @@
 }
 .introduction h1 span { display: block; color: var(--launch-yellow); }
 .introduction > p { margin: 28px 0 0; color: #d3d6cd; font-size: 18px; line-height: 1.7; }
+.banner { margin: 32px 0 0; padding: 6px; background: var(--launch-paper); border-radius: 8px; }
+.banner img { display: block; width: 100%; height: auto; border-radius: 4px; }
 .contact { padding: 36px; background: var(--launch-paper); color: var(--launch-ink); border-radius: 8px; }
-.contact h2 { margin: 0 0 14px; font-size: 24px; line-height: 1.3; letter-spacing: -.02em; }
+.contact h2 { margin: 0 0 24px; font-size: 24px; line-height: 1.4; letter-spacing: -.02em; text-wrap: balance; }
 .contact > p { margin: 0; font-size: 15px; line-height: 1.7; }
-.contact .number { margin: 28px 0; font-size: clamp(22px, 2.5vw, 30px); font-weight: 750; line-height: 1.4; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.contact .number { margin: 0 0 12px; font-size: clamp(22px, 2.5vw, 30px); font-weight: 750; line-height: 1.4; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.email { display: block; width: fit-content; max-width: 100%; margin-bottom: 28px; font-size: 15px; line-height: 1.7; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 4px; }
+.email:hover { text-decoration-thickness: 2px; }
+.email:focus-visible { outline: 3px solid #aa3023; outline-offset: 5px; }
 .whatsapp { min-height: 52px; padding: 14px 18px; display: flex; justify-content: center; align-items: center; gap: 12px; background: var(--launch-yellow); color: var(--launch-ink); border-radius: 4px; font-size: 15px; font-weight: 750; }
 .whatsapp > svg:last-child { margin-left: auto; }
 .whatsapp:hover { background: #eabc00; }
@@ -58,5 +63,5 @@
   .introduction h1 { font-size: clamp(64px, 12vw, 88px); }
   .introduction > p { margin-top: 20px; font-size: 16px; }
   .contact { padding: 28px; max-width: 480px; }
-  .contact .number { margin: 24px 0; font-size: 26px; }
+  .contact .number { font-size: 26px; }
 }
